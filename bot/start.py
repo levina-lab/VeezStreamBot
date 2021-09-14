@@ -37,7 +37,7 @@ async def _human_time_duration(seconds):
 async def start(_, m: Message):
     if m.chat.type == "private":
         await m.reply_text(
-            f"✨ **Hello there, I am a telegram group video streaming bot.**\n\n💭 **I was created to stream videos in group "
+            f"✨ **Hello there, I am a telegram group video streaming bot.**\n\n💭 **I was created to stream videos in group by @chhavi_grewal12 "
             f"video chats easily.**\n\n❔ **To find out how to use me, please press the help button below** 👇🏻",
             reply_markup=InlineKeyboardMarkup(
                 [[
@@ -51,12 +51,12 @@ async def start(_, m: Message):
                         "🌐 Terms & Condition", callback_data="cbinfo")
                 ], [
                     InlineKeyboardButton(
-                        "💬 Group", url="https://t.me/VeezSupportGroup"),
+                        "💬 Group", url="https://t.me/moviesgrammm"),
                     InlineKeyboardButton(
-                        "📣 Channel", url="https://t.me/levinachannel")
+                        "📣 Channel", url="https://t.me/chavi1234movies")
                 ], [
                     InlineKeyboardButton(
-                        "👩🏻‍💻 Developer", url="https://t.me/dlwrml")
+                        "👩🏻‍💻 Developer", url="https://t.me/chhavi_grewal12")
                 ], [
                     InlineKeyboardButton(
                         "📚 All Command List", callback_data="cblist")
@@ -90,10 +90,10 @@ async def alive(_, m: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "✨ Group", url=f"https://t.me/VeezSupportGroup"
+                        "✨ Group", url=f"https://t.me/moviesgrammm"
                     ),
                     InlineKeyboardButton(
-                        "📣 Channel", url=f"https://t.me/levinachannel"
+                        "📣 Channel", url=f"https://t.me/chavi1234movies"
                     )
                 ]
             ]
