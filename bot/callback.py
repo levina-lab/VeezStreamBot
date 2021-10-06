@@ -124,7 +124,7 @@ async def cblist(_, query: CallbackQuery):
 » /rmw - remove all downloaded raw files
 » /leaveall - order assistant leave from all group
 
-⚡ __Maintained by Veez Project Team__""",
+⚡ __Maintained by SLBotsOfficial Team__""",
         reply_markup=InlineKeyboardMarkup(
             [[
                 InlineKeyboardButton(
