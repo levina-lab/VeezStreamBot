@@ -51,12 +51,12 @@ telegram bot project for streaming video on telegram video chat, powered by [py-
 
 ## 🧪 Get SESSION_NAME from below:
 
-TAP THIS: [![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@levinalab/StringSession#main.py)
+TAP THIS: [![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@Tharuk-Renuja/PyroSessionString)
 
 ## 💜 Deploy To Heroku
 The easy way to host this bot, deploy to Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/levina-lab/video-stream)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TharukRenuja/video-stream)
 
 ## 🌀 Run On Workflows
 
@@ -153,7 +153,7 @@ jobs:
 - sudo apt install ffmpeg -y
 - nvm install v16.5.0
 - npm i -g npm
-- git clone https://github.com/levina-lab/video-stream
+- git clone https://github.com/TharukRenuja/video-stream
 - cd video-stream
 - virtualenv venv #Create Virtual Environment.
 - source venv/bin/activate #Activate Virtual Environment
@@ -175,4 +175,4 @@ jobs:
 - [Dan](https://github.com/delivrance) for [``Pyrogram``](https://github.com/pyrogram)
 
 ### Support & Updates 🎑
-<a href="https://t.me/VeezSupportGroup"><img src="https://img.shields.io/badge/Join-Group%20Support-blue.svg?style=for-the-badge&logo=Telegram"></a> <a href="https://t.me/levinachannel"><img src="https://img.shields.io/badge/Join-Updates%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
+<a href="https://t.me/trtechguide"><img src="https://img.shields.io/badge/Join-Group%20Support-blue.svg?style=for-the-badge&logo=Telegram"></a> <a href="https://t.me/SLBotsOfficial"><img src="https://img.shields.io/badge/Join-Updates%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
