@@ -1,3 +1,5 @@
+⚠ REPO CLOSED FOR 5-6 DAYS WAIT FOR UPCOMING UPDATE ⚠
+
 <h2 align="centre">VIDEO STREAM BOT</h2>
 
 telegram bot project for streaming video on telegram video chat, powered by [py-tgcalls](https://github.com/pytgcalls/pytgcalls) and [pyrogram](https://github.com/pyrogram/pyrogram)
