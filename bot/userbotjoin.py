@@ -1,80 +1,88 @@
-# Copyright (C) 2021 Veez Music Project
-
 import asyncio
-from pyrogram import Client, filters
-from pyrogram.errors import UserAlreadyParticipant
-from pyrogram.raw.types import InputGroupCall
-from pyrogram.raw.functions.phone import CreateGroupCall, DiscardGroupCall, GetGroupCall
 from helpers.filters import command
+from pyrogram import Client, filters
+from config import BOT_USERNAME, SUDO_USERS
+from pyrogram.errors import UserAlreadyParticipant
 from helpers.decorators import authorized_users_only, errors
-from bot.videoplayer import app as USER
-from config import Veez
 
-
-@Client.on_message(command(["vjoin", f"vjoin@{Veez.BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
+@Client.on_message(
+    command(["userbotjoin", f"userbotjoin@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot
+)
 @authorized_users_only
 @errors
-async def entergroup(client, message):
+async def addchannel(client, message):
     chid = message.chat.id
     try:
         invitelink = await client.export_chat_invite_link(chid)
     except:
         await message.reply_text(
-            "<b>💡 promote me as admin first to do that !</b>",
+            "<b>• **i'm not have permission:**\n\n» ❌ __Add Users__</b>",
         )
         return
 
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "assistant"
+        user.first_name = "music assistant"
 
     try:
         await USER.join_chat(invitelink)
-        await USER.send_message(message.chat.id, "🤖: i'm joined here for streaming video on video chat")
+        await USER.send_message(
+            message.chat.id, "🤖: i'm joined here for playing music on voice chat"
+        )
     except UserAlreadyParticipant:
         await message.reply_text(
-            "<b>✅ assistant already entered this group</b>",
+            f"<b>✅ userbot already joined chat</b>",
         )
     except Exception as e:
         print(e)
         await message.reply_text(
-            f"<b>🔴 FLOODWAIT ERROR 🔴\n\n user {user.first_name} couldn't join your group due to heavy join requests for userbot! make sure assistant is not banned in this group."
+            f"<b>🛑 Flood Wait Error 🛑 \n\n User {user.first_name} couldn't join your group due to heavy join requests for userbot."
+            "\n\nor manually add assistant to your Group and try again</b>",
         )
         return
     await message.reply_text(
-        "<b>✅ assistant userbot joined your chat</b>",
+        f"<b>✅ userbot successfully joined chat</b>",
     )
 
 
-@Client.on_message(command(["vleave", f"vleave@{Veez.BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(
+    command(["userbotleave", f"userbotleave@{BOT_USERNAME}"]) & filters.group & ~filters.edited
+)
 @authorized_users_only
-async def leavegroup(client, message):
+async def rem(client, message):
     try:
+        await USER.send_message(message.chat.id, "✅ userbot successfully left chat")
         await USER.leave_chat(message.chat.id)
     except:
         await message.reply_text(
-            "<b>❌ assistant can't leave from group because floodwaits.\n\n» you can manually kick me from this group</b>"
+            "<b>user couldn't leave your group, may be floodwaits.\n\nor manually kick me from your group</b>"
         )
 
         return
 
 
-@Client.on_message(command(["leaveall", f"leaveall@{Veez.BOT_USERNAME}"]))
-async def outall(client, message):
-    if message.from_user.id not in Veez.SUDO_USERS:
+@Client.on_message(command(["leaveall", f"leaveall@{BOT_USERNAME}"]))
+async def bye(client, message):
+    if message.from_user.id not in SUDO_USERS:
         return
 
-    left=0
-    failed=0
-    lol = await message.reply("🔁 assistant leaving all chats")
+    left = 0
+    failed = 0
+    lol = await message.reply("🔄 **userbot** leaving all chats !")
     async for dialog in USER.iter_dialogs():
         try:
             await USER.leave_chat(dialog.chat.id)
             left += 1
-            await lol.edit(f"🔁 assistant leaving...\n⏳ Left: {left} chats.\n\n❌ Failed: {failed} chats.")
+            await lol.edit(
+                f"Userbot leaving all group...\n\nLeft: {left} chats.\nFailed: {failed} chats."
+            )
         except:
             failed += 1
-            await lol.edit(f"🔁 assistant leaving...\n⏳ Left: {left} chats.\n\n❌ Failed: {failed} chats.")
+            await lol.edit(
+                f"Userbot leaving...\n\nLeft: {left} chats.\nFailed: {failed} chats."
+            )
         await asyncio.sleep(0.7)
-    await client.send_message(message.chat.id, f"✅ Left {left} chats.\n\n❌ Failed {failed} chats.")
+    await client.send_message(
+        message.chat.id, f"Left {left} chats.\nFailed {failed} chats."
+    )
