@@ -1,0 +1,65 @@
+name: Run on workflows
+on:
+    schedule:
+      - cron: "0 */6 * * *"
+    push:
+      branches: [ main ]
+    workflow_dispatch:
+    
+env:
+  API_ID: "${{ secrets.API_ID }}"
+  API_HASH: "${{ secrets.API_HASH }}"
+  SESSION_NAME: "${{ secrets.SESSION_NAME }}"
+  BOT_USERNAME: "${{ secrets.BOT_USERNAME }}"
+  ASSISTANT_NAME: "${{ secrets.ASSISTANT_NAME }}"
+  DURATION_LIMIT: "${{ secrets.DURATION_LIMIT }}"
+  BOT_TOKEN: "${{ secrets.BOT_TOKEN }}"
+  SUDO_USERS: "${{ secrets.SUDO_USERS }}"
+  CHANNEL_NAME: "${{ secrets.ASSISTANT_NAME }}"
+  GROUP_NAME: "${{ secrets.ASSISTANT_NAME }}"
+  OWNER_NAME: "${{ secrets.ASSISTANT_NAME }}"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+       - uses: actions/checkout@v2
+         with:
+            ref: beta
+       - uses: styfle/cancel-workflow-action@0.9.0
+         name: "Cancelling duplicate workflow runs"
+         with:
+            all_but_latest: true
+            access_token: ${{ github.token }}
+       - uses: actions/setup-node@v2
+         with:
+            node-version: '16'
+       - name: Set up Python 3.9
+         uses: actions/setup-python@v2.2.2
+         with:
+           python-version: 3.9
+       - name: cloning repo and install
+
+         continue-on-error: true
+         run: |
+           sudo apt -qq update && sudo apt -qq install -y --no-install-recommends ffmpeg neofetch
+           pip3 install -r requirements.txt
+          #  echo "API_ID=${{ secrets.API_ID }} | tee .env
+          #  echo "API_HASH=${{ secrets.API_HASH }} | tee -a .env
+          #  echo "BOT_USERNAME=${{ secrets.BOT_USERNAME }} | tee -a .env
+          #  echo "ASSISTANT_NAME=${{ secrets.ASSISTANT_NAME }} | tee -a .env
+          #  echo "SESSION_NAME=${{ secrets.SESSION_NAME }} | tee -a .env
+          #  echo "DURATION_LIMIT=${{ secrets.DURATION_LIMIT }} | tee -a .env
+          #  echo "SUDO_USERS=${{ secrets.SUDO_USERS }} | tee -a .env
+          #  echo "CHANNEL_NAME=${{ secrets.ASSISTANT_NAME }} | tee -a .env
+          #  echo "GROUP_NAME=${{ secrets.ASSISTANT_NAME }} | tee -a .env
+          #  echo "OWNER_NAME=${{ secrets.ASSISTANT_NAME }} | tee -a .env
+          #  echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }} | tee -a .env || echo "processing with bot"
+          #  cat .env
+       - name: Running
+         timeout-minutes: 350
+         continue-on-error: true
+         run: |
+           python3 -m bot
+           echo "Bot Died"
