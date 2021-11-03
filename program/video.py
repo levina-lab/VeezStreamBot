@@ -68,11 +68,22 @@ async def vplay(c: Client, m: Message):
             ]
         ]
     )
+
     try:
         aing = await c.get_me()
     except Exception as e:
         return await m.reply_text(f"error:\n\n{e}")
     a = await c.get_chat_member(chat_id, aing.id)
+
+    
+    popo = await _.get_me()
+    papa = popo
+    pepe = papa.id
+    chat_title = m.chat.title
+    chat_id = m.chat.id
+    
+    a = await _.get_chat_member(chat_id, pepe)
+
     if a.status != "administrator":
         await m.reply_text(
             f"💡 To use me, I need to be an **Administrator** with the following **permissions**:\n\n» ❌ __Delete messages__\n» ❌ __Ban users__\n» ❌ __Add users__\n» ❌ __Manage voice chat__\n\nData is **updated** automatically after you **promote me**"
@@ -95,8 +106,15 @@ async def vplay(c: Client, m: Message):
         await m.reply_text("missing required permission:" + "\n\n» ❌ __Ban users__")
         return
     try:
+
         ubot = await user.get_me()
         b = await c.get_chat_member(chat_id, ubot.id)
+
+        uber = await user.get_me()
+        grab = uber
+        good = grab.id
+        b = await _.get_chat_member(chat_id, good)
+
         if b.status == "kicked":
             await m.reply_text(
                 f"@{ASSISTANT_NAME} **is banned in group** {m.chat.title}\n\n» **unban the userbot first if you want to use this bot.**"
@@ -109,6 +127,7 @@ async def vplay(c: Client, m: Message):
             except Exception as e:
                 await m.reply_text(f"❌ **userbot failed to join**\n\n**reason**:{e}")
                 return
+
         else:
             try:
                 pope = await c.export_chat_invite_link(chat_id)
@@ -120,6 +139,19 @@ async def vplay(c: Client, m: Message):
                 return await m.reply_text(
                     f"❌ **userbot failed to join**\n\n**reason**:{e}"
                 )
+
+
+            else:
+                try:
+                    pope = await _.export_chat_invite_link(chat_id)
+                    pepo = await _.revoke_chat_invite_link(chat_id, pope)
+                    await user.join_chat(pepo.invite_link)
+                except UserAlreadyParticipant:
+                    pass
+                except Exception as e:
+                    return await m.reply_text(f"❌ **userbot failed to join**\n\n**reason**:{e}")
+    replied = m.reply_to_message
+    chat_id = m.chat.id
 
     if replied:
         if replied.video or replied.document:
@@ -297,11 +329,21 @@ async def vstream(c: Client, m: Message):
             ]
         ]
     )
+
     try:
         aing = await c.get_me()
     except Exception as e:
         return await m.reply_text(f"error:\n\n{e}")
     a = await c.get_chat_member(chat_id, aing.id)
+
+    popo = await _.get_me()
+    papa = popo
+    pepe = papa.id
+    chat_title = m.chat.title
+    chat_id = m.chat.id
+    
+    a = await _.get_chat_member(chat_id, pepe)
+
     if a.status != "administrator":
         await m.reply_text(
             f"💡 To use me, I need to be an **Administrator** with the following **permissions**:\n\n» ❌ __Delete messages__\n» ❌ __Ban users__\n» ❌ __Add users__\n» ❌ __Manage voice chat__\n\nData is **updated** automatically after you **promote me**"
@@ -324,8 +366,15 @@ async def vstream(c: Client, m: Message):
         await m.reply_text("missing required permission:" + "\n\n» ❌ __Ban users__")
         return
     try:
+
         ubot = await user.get_me()
         b = await c.get_chat_member(chat_id, ubot.id)
+
+        uber = await user.get_me()
+        grab = uber
+        good = grab.id
+        b = await _.get_chat_member(chat_id, good)
+
         if b.status == "kicked":
             await m.reply_text(
                 f"@{ASSISTANT_NAME} **is banned in group** {m.chat.title}\n\n» **unban the userbot first if you want to use this bot.**"
@@ -338,6 +387,7 @@ async def vstream(c: Client, m: Message):
             except Exception as e:
                 await m.reply_text(f"❌ **userbot failed to join**\n\n**reason**:{e}")
                 return
+
         else:
             try:
                 pope = await c.export_chat_invite_link(chat_id)
@@ -349,6 +399,17 @@ async def vstream(c: Client, m: Message):
                 return await m.reply_text(
                     f"❌ **userbot failed to join**\n\n**reason**:{e}"
                 )
+
+            else:
+                try:
+                    pope = await _.export_chat_invite_link(chat_id)
+                    pepo = await _.revoke_chat_invite_link(chat_id, pope)
+                    await user.join_chat(pepo.invite_link)
+                except UserAlreadyParticipant:
+                    pass
+                except Exception as e:
+                    return await m.reply_text(f"❌ **userbot failed to join**\n\n**reason**:{e}")
+    chat_id = m.chat.id
 
     if len(m.command) < 2:
         await m.reply("» give me a live-link/m3u8 url/youtube link to stream.")
