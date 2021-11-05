@@ -2,8 +2,8 @@ tgcrypto
 asyncio
 ffmpeg-python
 py-tgcalls==0.8.1rc1
-git+https://github.com/pyrogram/pyrogram@master
-git+https://github.com/yt-dlp/yt-dlp@master
+git+https://github.com/skip090/pro@master
+git+https://github.com/skip090/Lo@master
 youtube-search-python
 youtube-search
 httpx==0.13.3
