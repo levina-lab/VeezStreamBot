@@ -53,9 +53,9 @@ async def _human_time_duration(seconds):
 async def start_(client: Client, message: Message):
     await message.reply_text(
         f"""✨ **Welcome {message.from_user.mention()} !**\n
-💭 [{BOT_NAME}](https://t.me/{BOT_USERNAME}) **Allows you to play music and video on groups through the new Telegram's video chats!**
+💭 [{BOT_NAME}](https://t.me/{BOT_USERNAME}) **ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴘʟᴀʏ ᴠɪᴅᴇᴏ ɴᴅ ᴍᴜsɪᴄ ᴀʟsᴏ ᴏɴ ɢʀᴏᴜᴘs ᴛʜʀᴏᴜɢʜ ᴛʜᴇ ɴᴇᴡ ᴛᴇʟᴇɢʀᴀᴍ's ᴠᴏɪᴄᴇ ᴄʜᴀᴛs ᴘᴏᴡᴇʀ ʙʏ ᴘʏᴛɢᴄᴀʟʟs!**
 
-💡 **Find out all the Bot's commands and how they work by clicking on the » 📚 Commands button!**
+💡 **ɪ ᴀᴍ ᴘʟᴀʏ ᴍᴜ𝚜ɪᴄ ᴠᴇʀʏ ꜰᴀ𝚜ᴛ ᴀɴᴅ 𝚜ᴍᴏᴏᴛʜʟʏ.. >> ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️ ʙʏ [𝙳𝚎𝙲𝚘𝚍𝚎-𝙳𝚎𝚟𝚜](https://t.me/DeeCodeDevs)!**
 
 🔖 **To know how to use this bot, please click on the » ❓ Basic Guide button!**
 """,
@@ -64,7 +64,7 @@ async def start_(client: Client, message: Message):
                 [
                     InlineKeyboardButton(
                         "➕ Add me to your Group ➕",
-                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+                        url=f"",
                     )
                 ],
                 [InlineKeyboardButton("❓ Basic Guide", callback_data="cbhowtouse")],
@@ -82,7 +82,7 @@ async def start_(client: Client, message: Message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🌐 Source Code", url="https://github.com/levina-lab/video-stream"
+                        "🌐 Source Code", url="https://t.me/{BOT_USERNAME}?startgroup=true"
                     )
                 ],
             ]
