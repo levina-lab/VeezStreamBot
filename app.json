@@ -1,68 +1,68 @@
 {
-    "name": "Video x Music Stream Bot",
-    "description": "Telegram bot for Streaming Video & Music trought the Telegram Group Video Chat, powered by pytgcalls and pyrogram",
-    "logo": "https://telegra.ph/file/1c41ded2dd871eb36bd7e.png",
+    "name": "Nexus Musiqi Bot",
+    "description": "pytgcalls ve pyrogram tarafından desteklenen Telegram Grup Görüntülü Sohbet aracılığıyla Video ve Müzik Akışı için Telegram botu",
+    "logo": "https://telegra.ph/file/3837f56009786446c7ac7.jpg",
     "keywords": [
         "pytgcalls",
         "telegram bot",
         "video stream",
         "pyrogram"
     ],
-    "website": "https://t.me/levinachannel",
-    "repository": "https://github.com/levina-lab/video-stream",
-    "success_url": "https://t.me/dlwrml",
+    "website": "https://t.me/Nexus_Bots",
+    "repository": "https://github.com/Aliyevdii/Aze-Music",
+    "success_url": "https://t.me/dA_l_i_y_e_v_d_i",
     "env": {
         "API_ID": {
-            "description": "your API_ID from my.telegram.org",
+            "description": "API_ID'niz my.telegram.org",
             "required": true
         },
         "API_HASH": {
-            "description": "your API_HASH from my.telegram.org",
+            "description": "API_HASH'iniz içinm my.telegram.org",
             "required": true
         },
         "BOT_TOKEN": {
-            "description": "your bot token from @BotFather",
+            "description": " Bot Token Girin @BotFather",
             "required": true
         },
         "BOT_USERNAME": {
-            "description": "your bot username from @BotFather",
+            "description": "bot kullanıcı adınız from @BotFather",
             "required": true
         },
         "BOT_NAME": {
-            "description": "fill with your bot name from @BotFather",
+            "description": "bot adınızla doldurun @BotFather",
             "required": true
         },
         "ASSISTANT_NAME": {
-            "description": "fill with the assistant username account without @",
+            "description": "asistan kullanıcı adı @-bu olmadan",
             "required": true
         },
         "SESSION_NAME": {
-            "description": "fill with the pyrogram String Session",
+            "description": "pyrogram String Session ile doldurun",
             "required": true
         },
         "SUDO_USERS": {
-            "description": "list of user ids to be added to sudo member list, or just fill with your id",
+            "description": "sudo üye listesine eklenecek kullanıcı kimliklerinin listesi veya sadece kimliğinizle doldurun",
             "required": true
         },
         "GROUP_SUPPORT": {
-            "description": "if you have group, then fill the group username here without @",
+            "description": "grubunuz varsa, grup kullanıcı adını burada doldurun @-bu olmadan",
             "required": true,
-            "value": "VeezSupportGroup"
+            "value": "iron_Blood_Gurup"
         },
         "UPDATES_CHANNEL": {
-            "description": "if you have channel, then fill the channel username here without @",
+            "description": "kanalınız varsa, kanal kullanıcı adını buraya girmeden doldurun @",
             "required": true,
-            "value": "levinachannel"
+            "value": "Nexus_Bots"
         },
         "OWNER_NAME": {
-            "description": "fill with your telegram account username without @",
+            "description": "olmadan telgraf hesabı kullanıcı adınızla doldurun @",
             "required": true,
-            "value": "dlwrml"
+            "value": "A_l_i_y_e_v_d_i"
         },
         "ALIVE_NAME": {
-            "description": "fill with your telegram account nickname/name",
+            "description": "telgraf hesabınızın takma adı/adıyla doldurun",
             "required": true,
-            "value": "Levina"
+            "value": "NEXUS"
         }
     },
     "addons": [],
