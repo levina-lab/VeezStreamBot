@@ -63,9 +63,9 @@ async def leave_all(client, message):
     left = 0
     failed = 0
     lol = await message.reply("🔄 **userbot** leaving all chats !")
-    async for dialog in USER.iter_dialogs():
+    async for dialog in user.iter_dialogs():
         try:
-            await USER.leave_chat(dialog.chat.id)
+            await user.leave_chat(dialog.chat.id)
             left += 1
             await lol.edit(
                 f"Userbot leaving all group...\n\nLeft: {left} chats.\nFailed: {failed} chats."
