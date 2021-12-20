@@ -19,6 +19,7 @@ from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Message
 from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import BOT_USERNAME as bn
 from driver.decorators import humanbytes
@@ -68,7 +69,7 @@ def song(_, message):
         m.edit("📤 uploading file...")
         message.reply_audio(
             audio_file,
-            caption=rep,
+            caption=rep, 
             thumb=thumb_name,
             parse_mode="md",
             title=title,
@@ -84,6 +85,17 @@ def song(_, message):
         os.remove(thumb_name)
     except Exception as e:
         print(e)
+
+                [
+                    InlineKeyboardButton(
+                        "Test .", url="https://t.me/VeezSupportGroup"
+                    )
+                ],
+            ]
+        ),
+        disable_web_page_preview=True,
+    )
+
 
 
 @Client.on_message(
