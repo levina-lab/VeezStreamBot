@@ -5,7 +5,7 @@ py-tgcalls
 pyrogram
 youtube-search-python==1.4.9
 yt-dlp==2021.11.10.1
-youtube-dl
+git+https://github.com/ytdl-org/youtube-dl@master
 youtube-search
 python-dotenv
 dnspython
@@ -13,7 +13,6 @@ gitpython
 aiofiles
 aiohttp
 requests
-pillow
 heroku3
 motor
 psutil
