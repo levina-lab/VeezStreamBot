@@ -1,7 +1,7 @@
 tgcrypto
 asyncio
 ffmpeg-python
-py-tgcalls
+py-tgcalls==0.8.1
 pyrogram
 youtube-search-python==1.4.9
 yt-dlp==2021.11.10.1
