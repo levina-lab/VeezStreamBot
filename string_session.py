@@ -1,5 +1,6 @@
 
 #only for new users who are facing problem, program session generator
+#use this only if you are facing problem
 
 from pyrogram import Client as c
 
