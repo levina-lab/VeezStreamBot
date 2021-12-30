@@ -67,7 +67,7 @@
 ## Heroku Deployment 💜
 The easy way to host this bot, deploy to Heroku, Change the app country to Europe (it will help to make the bot stable).
 
-[![Deploy](https://dashboard.heroku.com/apps)](https://github.com/PravincyGp/video-stream)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://github.com/PravincyGp/video-stream)
 
 ## VPS Deployment 📡
 Get the best Quality of streaming performance by hosting it on VPS, here's the step's:
