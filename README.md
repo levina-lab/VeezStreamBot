@@ -43,7 +43,7 @@
 ## 🛠 Commands:
 | Command | Description |
 | ------ | ------ |
-| `/mplay (query)` | play music from youtube |
+| `/play (query)` | play music from youtube |
 | `/stream (radio link)` | stream a live streaming music |
 | `/vplay (query)` | play video from youtube |
 | `/vstream (live link)` | play video live streaming video |
@@ -91,6 +91,8 @@ python3 main.py # run the bot.
 
 # Credits 💖
 
+- [@Gplove_Rp](https://t.me/GPlove_Rp)
+- [Pravincy](https://github.com/PravincyGp) ``Dev``
 - [Levina](https://github.com/levina-lab) ``Dev``
 - [Zxce3](https://github.com/Zxce3) ``Dev``
 - [DoellBarr](https://github.com/DoellBarr) ``Dev``
