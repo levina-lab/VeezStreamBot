@@ -43,7 +43,7 @@
 ## 🛠 Commands:
 | Command | Description |
 | ------ | ------ |
-| `/mplay (query)` | play music from youtube |
+| `/play (query)` | play music from youtube |
 | `/vplay (query)` | play video from youtube |
 | `/vstream (live link)` | play video live streaming video |
 | `/pause` | pause the streaming (admin only) |
