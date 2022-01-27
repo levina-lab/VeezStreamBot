@@ -1,16 +1,16 @@
 {
-    "name": "Video x Music Stream Bot",
+    "name": "Musíc Bot",
     "description": "Telegram bot for Streaming Video & Music trought the Telegram Group Video Chat, powered by pytgcalls and pyrogram",
-    "logo": "https://telegra.ph/file/1c41ded2dd871eb36bd7e.png",
+    "logo": "https://telegra.ph/file/2ffccf2fbfcc6765ab219.jpg",
     "keywords": [
         "pytgcalls",
         "telegram bot",
         "video stream",
         "pyrogram"
     ],
-    "website": "https://t.me/levinachannel",
+    "website": "https://t.me/the_Blaze_network",
     "repository": "https://github.com/Official-afk-xD/video-stream",
-    "success_url": "https://t.me/dlwrml",
+    "success_url": "https://t.me/log_afk",
     "env": {
         "API_ID": {
             "description": "your API_ID from my.telegram.org",
@@ -47,22 +47,22 @@
         "GROUP_SUPPORT": {
             "description": "if you have group, then fill the group username here without @",
             "required": true,
-            "value": "VeezSupportGroup"
+            "value": "UNIQUE_support"
         },
         "UPDATES_CHANNEL": {
             "description": "if you have channel, then fill the channel username here without @",
             "required": true,
-            "value": "levinachannel"
+            "value": "BLAZE_support"
         },
         "OWNER_NAME": {
             "description": "fill with your telegram account username without @",
             "required": true,
-            "value": "dlwrml"
+            "value": "log_afk"
         },
         "ALIVE_NAME": {
             "description": "fill with your telegram account nickname/name",
             "required": true,
-            "value": "Levina"
+            "value": "BLAZE"
         }
     },
     "addons": [],
