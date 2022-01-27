@@ -1,6 +1,6 @@
 <p align="center"><a href="https://t.me/log_afk"><img src="https://telegra.ph/file/2ffccf2fbfcc6765ab219.jpg"></a></p>
 <p align="center">
-    <br><b>Video Stream is an Advanced Telegram Bot that's allow you to play Video & Music on Telegram Group Video Chat</b><br>
+    <br><b> Telegram Bot that's allow you to play Video & Music on Telegram Group Video Chat</b><br>
 </p>
 <p 
 ## 🎭 Preview
