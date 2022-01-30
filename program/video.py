@@ -6,6 +6,9 @@ import re
 import asyncio
 
 from config import ASSISTANT_NAME, BOT_USERNAME, IMG_1, IMG_2
+from program.utils.inline import stream_markup
+from driver.design.thumbnail import thumb
+from driver.design.chatname import CHAT_TITLE
 from driver.filters import command, other_filters
 from driver.queues import QUEUE, add_to_queue
 from driver.veez import call_py, user
@@ -59,14 +62,7 @@ async def vplay(c: Client, m: Message):
     await m.delete()
     replied = m.reply_to_message
     chat_id = m.chat.id
-    keyboard = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton(text="• Mᴇɴᴜ", callback_data="cbmenu"),
-                InlineKeyboardButton(text="• Cʟᴏsᴇ", callback_data="cls"),
-            ]
-        ]
-    )
+    user_id = m.from_user.id
     if m.sender_chat:
         return await m.reply_text("you're an __Anonymous__ Admin !\n\n» revert back to user account from admin rights.")
     try:
@@ -76,53 +72,49 @@ async def vplay(c: Client, m: Message):
     a = await c.get_chat_member(chat_id, aing.id)
     if a.status != "administrator":
         await m.reply_text(
-            f"💡 To use me, I need to be an **Administrator** with the following **permissions**:\n\n» ❌ __Delete messages__\n» ❌ __Add users__\n» ❌ __Manage video chat__\n\nData is **updated** automatically after you **promote me**"
+            f"💡 To use me, I need to be an **Administrator** with the following **permissions**:\n\n» ❌ __Delete messages__\n» ❌ __Invite users__\n» ❌ __Manage video chat__\n\nOnce done, type /reload"
         )
         return
     if not a.can_manage_voice_chats:
         await m.reply_text(
-            "missing required permission:" + "\n\n» ❌ __Manage video chat__"
-        )
+        "💡 To use me, Give me the following permission below:"
+        + "\n\n» ❌ __Manage video chat__\n\nOnce done, try again.")
         return
     if not a.can_delete_messages:
         await m.reply_text(
-            "missing required permission:" + "\n\n» ❌ __Delete messages__"
-        )
+        "💡 To use me, Give me the following permission below:"
+        + "\n\n» ❌ __Delete messages__\n\nOnce done, try again.")
         return
     if not a.can_invite_users:
-        await m.reply_text("missing required permission:" + "\n\n» ❌ __Add users__")
+        await m.reply_text(
+        "💡 To use me, Give me the following permission below:"
+        + "\n\n» ❌ __Add users__\n\nOnce done, try again.")
         return
     try:
         ubot = (await user.get_me()).id
-        b = await c.get_chat_member(chat_id, ubot)
+        b = await c.get_chat_member(chat_id, ubot) 
         if b.status == "kicked":
-            await m.reply_text(
-                f"@{ASSISTANT_NAME} **is banned in group** {m.chat.title}\n\n» **unban the userbot first if you want to use this bot.**"
-            )
-            return
-    except UserNotParticipant:
-        if m.chat.username:
-            try:
-                await user.join_chat(m.chat.username)
-            except Exception as e:
-                await m.reply_text(f"❌ **userbot failed to join**\n\n**reason**: `{e}`")
-                return
-        else:
-            try:
-                invitelink = await c.export_chat_invite_link(
-                    m.chat.id
-                )
-                if invitelink.startswith("https://t.me/+"):
+            await c.unban_chat_member(chat_id, ubot)
+            invitelink = await c.export_chat_invite_link(chat_id)
+            if invitelink.startswith("https://t.me/+"):
                     invitelink = invitelink.replace(
                         "https://t.me/+", "https://t.me/joinchat/"
                     )
-                await user.join_chat(invitelink)
-            except UserAlreadyParticipant:
-                pass
-            except Exception as e:
-                return await m.reply_text(
-                    f"❌ **userbot failed to join**\n\n**reason**: `{e}`"
-                )
+            await user.join_chat(invitelink)
+    except UserNotParticipant:
+        try:
+            invitelink = await c.export_chat_invite_link(chat_id)
+            if invitelink.startswith("https://t.me/+"):
+                    invitelink = invitelink.replace(
+                        "https://t.me/+", "https://t.me/joinchat/"
+                    )
+            await user.join_chat(invitelink)
+        except UserAlreadyParticipant:
+            pass
+        except Exception as e:
+            return await m.reply_text(
+                f"❌ **userbot failed to join**\n\n**reason**: `{e}`"
+            )
 
     if replied:
         if replied.video or replied.document:
@@ -152,10 +144,11 @@ async def vplay(c: Client, m: Message):
                 pos = add_to_queue(chat_id, songname, dl, link, "Video", Q)
                 await loser.delete()
                 requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
+                buttons = stream_markup(user_id)
                 await m.reply_photo(
                     photo=f"{IMG_1}",
-                    caption=f"💡 **Track added to queue »** `{pos}`\n\n🏷 **Name:** [{songname}]({link}) | `video`\n💭 **Chat:** `{chat_id}`\n🎧 **Request by:** {requester}",
-                    reply_markup=keyboard,
+                    reply_markup=InlineKeyboardMarkup(buttons),
+                    caption=f"💡 **Track added to queue »** `{pos}`\n\n🗂 **Name:** [{songname}]({link}) | `video`\n💭 **Chat:** `{chat_id}`\n🧸 **Request by:** {requester}",
                 )
             else:
                 if Q == 720:
@@ -177,10 +170,11 @@ async def vplay(c: Client, m: Message):
                 add_to_queue(chat_id, songname, dl, link, "Video", Q)
                 await loser.delete()
                 requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
+                buttons = stream_markup(user_id)
                 await m.reply_photo(
                     photo=f"{IMG_2}",
-                    caption=f"🏷 **Name:** [{songname}]({link})\n💭 **Chat:** `{chat_id}`\n💡 **Status:** `Playing`\n🎧 **Request by:** {requester}\n📹 **Stream type:** `Video`",
-                    reply_markup=keyboard,
+                    reply_markup=InlineKeyboardMarkup(buttons),
+                    caption=f"🗂 **Name:** [{songname}]({link}) | `video`\n💭 **Chat:** `{chat_id}`\n🧸 **Request by:** {requester}",
                 )
         else:
             if len(m.command) < 2:
@@ -197,9 +191,14 @@ async def vplay(c: Client, m: Message):
                     await loser.edit("❌ **no results found.**")
                 else:
                     songname = search[0]
+                    title = search[0]
                     url = search[1]
                     duration = search[2]
                     thumbnail = search[3]
+                    userid = m.from_user.id
+                    gcname = m.chat.title
+                    ctitle = await CHAT_TITLE(gcname)
+                    image = await thumb(thumbnail, title, userid, ctitle)
                     veez, ytlink = await ytdl(url)
                     if veez == 0:
                         await loser.edit(f"❌ yt-dl issues detected\n\n» `{ytlink}`")
@@ -210,10 +209,11 @@ async def vplay(c: Client, m: Message):
                             )
                             await loser.delete()
                             requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
+                            buttons = stream_markup(user_id)
                             await m.reply_photo(
-                                photo=thumbnail,
-                                caption=f"💡 **Track added to queue »** `{pos}`\n\n🏷 **Name:** [{songname}]({url}) | `video`\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {requester}",
-                                reply_markup=keyboard,
+                                photo=image,
+                                reply_markup=InlineKeyboardMarkup(buttons),
+                                caption=f"💡 **Track added to queue »** `{pos}`\n\n🗂 **Name:** [{songname}]({url}) | `video`\n⏱ **Duration:** `{duration}`\n🧸 **Request by:** {requester}",
                             )
                         else:
                             try:
@@ -230,10 +230,11 @@ async def vplay(c: Client, m: Message):
                                 add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
                                 await loser.delete()
                                 requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
+                                buttons = stream_markup(user_id)
                                 await m.reply_photo(
-                                    photo=thumbnail,
-                                    caption=f"🏷 **Name:** [{songname}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n🎧 **Request by:** {requester}\n📹 **Stream type:** `Video`",
-                                    reply_markup=keyboard,
+                                    photo=image,
+                                    reply_markup=InlineKeyboardMarkup(buttons),
+                                    caption=f"🗂 **Name:** [{songname}]({url}) | `video`\n⏱ **Duration:** `{duration}`\n🧸 **Request by:** {requester}",
                                 )
                             except Exception as ep:
                                 await loser.delete()
@@ -254,9 +255,14 @@ async def vplay(c: Client, m: Message):
                 await loser.edit("❌ **no results found.**")
             else:
                 songname = search[0]
+                title = search[0]
                 url = search[1]
                 duration = search[2]
                 thumbnail = search[3]
+                userid = m.from_user.id
+                gcname = m.chat.title
+                ctitle = await CHAT_TITLE(gcname)
+                image = await thumb(thumbnail, title, userid, ctitle)
                 veez, ytlink = await ytdl(url)
                 if veez == 0:
                     await loser.edit(f"❌ yt-dl issues detected\n\n» `{ytlink}`")
@@ -264,13 +270,12 @@ async def vplay(c: Client, m: Message):
                     if chat_id in QUEUE:
                         pos = add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
                         await loser.delete()
-                        requester = (
-                            f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-                        )
+                        requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
+                        buttons = stream_markup(user_id)
                         await m.reply_photo(
-                            photo=thumbnail,
-                            caption=f"💡 **Track added to queue »** `{pos}`\n\n🏷 **Name:** [{songname}]({url}) | `video`\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {requester}",
-                            reply_markup=keyboard,
+                            photo=image,
+                            reply_markup=InlineKeyboardMarkup(buttons),
+                            caption=f"💡 **Track added to queue »** `{pos}`\n\n🗂 **Name:** [{songname}]({url}) | `video`\n⏱ **Duration:** `{duration}`\n🧸 **Request by:** {requester}",
                         )
                     else:
                         try:
@@ -287,10 +292,11 @@ async def vplay(c: Client, m: Message):
                             add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
                             await loser.delete()
                             requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
+                            buttons = stream_markup(user_id)
                             await m.reply_photo(
-                                photo=thumbnail,
-                                caption=f"🏷 **Name:** [{songname}]({url})\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n🎧 **Request by:** {requester}\n📹 **Stream type:** `Video`",
-                                reply_markup=keyboard,
+                                photo=image,
+                                reply_markup=InlineKeyboardMarkup(buttons),
+                                caption=f"🗂 **Name:** [{songname}]({url}) |`video`\n⏱ **Duration:** `{duration}`\n🧸 **Request by:** {requester}",
                             )
                         except Exception as ep:
                             await loser.delete()
@@ -301,14 +307,7 @@ async def vplay(c: Client, m: Message):
 async def vstream(c: Client, m: Message):
     await m.delete()
     chat_id = m.chat.id
-    keyboard = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton(text="• Mᴇɴᴜ", callback_data="cbmenu"),
-                InlineKeyboardButton(text="• Cʟᴏsᴇ", callback_data="cls"),
-            ]
-        ]
-    )
+    user_id = m.from_user.id
     if m.sender_chat:
         return await m.reply_text("you're an __Anonymous__ Admin !\n\n» revert back to user account from admin rights.")
     try:
@@ -318,53 +317,49 @@ async def vstream(c: Client, m: Message):
     a = await c.get_chat_member(chat_id, aing.id)
     if a.status != "administrator":
         await m.reply_text(
-            f"💡 To use me, I need to be an **Administrator** with the following **permissions**:\n\n» ❌ __Delete messages__\n» ❌ __Add users__\n» ❌ __Manage video chat__\n\nData is **updated** automatically after you **promote me**"
+            f"💡 To use me, I need to be an **Administrator** with the following **permissions**:\n\n» ❌ __Delete messages__\n» ❌ __Invite users__\n» ❌ __Manage video chat__\n\nOnce done, type /reload"
         )
         return
     if not a.can_manage_voice_chats:
         await m.reply_text(
-            "missing required permission:" + "\n\n» ❌ __Manage video chat__"
-        )
+        "💡 To use me, Give me the following permission below:"
+        + "\n\n» ❌ __Manage video chat__\n\nOnce done, try again.")
         return
     if not a.can_delete_messages:
         await m.reply_text(
-            "missing required permission:" + "\n\n» ❌ __Delete messages__"
-        )
+        "💡 To use me, Give me the following permission below:"
+        + "\n\n» ❌ __Delete messages__\n\nOnce done, try again.")
         return
     if not a.can_invite_users:
-        await m.reply_text("missing required permission:" + "\n\n» ❌ __Add users__")
+        await m.reply_text(
+        "💡 To use me, Give me the following permission below:"
+        + "\n\n» ❌ __Add users__\n\nOnce done, try again.")
         return
     try:
         ubot = (await user.get_me()).id
-        b = await c.get_chat_member(chat_id, ubot)
+        b = await c.get_chat_member(chat_id, ubot) 
         if b.status == "kicked":
-            await m.reply_text(
-                f"@{ASSISTANT_NAME} **is banned in group** {m.chat.title}\n\n» **unban the userbot first if you want to use this bot.**"
-            )
-            return
-    except UserNotParticipant:
-        if m.chat.username:
-            try:
-                await user.join_chat(m.chat.username)
-            except Exception as e:
-                await m.reply_text(f"❌ **userbot failed to join**\n\n**reason**: `{e}`")
-                return
-        else:
-            try:
-                invitelink = await c.export_chat_invite_link(
-                    m.chat.id
-                )
-                if invitelink.startswith("https://t.me/+"):
+            await c.unban_chat_member(chat_id, ubot)
+            invitelink = await c.export_chat_invite_link(chat_id)
+            if invitelink.startswith("https://t.me/+"):
                     invitelink = invitelink.replace(
                         "https://t.me/+", "https://t.me/joinchat/"
                     )
-                await user.join_chat(invitelink)
-            except UserAlreadyParticipant:
-                pass
-            except Exception as e:
-                return await m.reply_text(
-                    f"❌ **userbot failed to join**\n\n**reason**: `{e}`"
-                )
+            await user.join_chat(invitelink)
+    except UserNotParticipant:
+        try:
+            invitelink = await c.export_chat_invite_link(chat_id)
+            if invitelink.startswith("https://t.me/+"):
+                    invitelink = invitelink.replace(
+                        "https://t.me/+", "https://t.me/joinchat/"
+                    )
+            await user.join_chat(invitelink)
+        except UserAlreadyParticipant:
+            pass
+        except Exception as e:
+            return await m.reply_text(
+                f"❌ **userbot failed to join**\n\n**reason**: `{e}`"
+            )
 
     if len(m.command) < 2:
         await m.reply("» give me a live-link/m3u8 url/youtube link to stream.")
@@ -403,10 +398,11 @@ async def vstream(c: Client, m: Message):
                 pos = add_to_queue(chat_id, "Live Stream", livelink, link, "Video", Q)
                 await loser.delete()
                 requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
+                buttons = stream_markup(user_id)
                 await m.reply_photo(
                     photo=f"{IMG_1}",
-                    caption=f"💡 **Track added to queue »** `{pos}`\n\n💭 **Chat:** `{chat_id}`\n🎧 **Request by:** {requester}",
-                    reply_markup=keyboard,
+                    reply_markup=InlineKeyboardMarkup(buttons),
+                    caption=f"💡 **Track added to queue »** `{pos}`\n\n💭 **Chat:** `{chat_id}`\n🧸 **Request by:** {requester}",
                 )
             else:
                 if Q == 720:
@@ -428,13 +424,12 @@ async def vstream(c: Client, m: Message):
                     )
                     add_to_queue(chat_id, "Live Stream", livelink, link, "Video", Q)
                     await loser.delete()
-                    requester = (
-                        f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-                    )
+                    requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
+                    buttons = stream_markup(user_id)
                     await m.reply_photo(
                         photo=f"{IMG_2}",
-                        caption=f"💡 **[Video live]({link}) stream started.**\n\n💭 **Chat:** `{chat_id}`\n💡 **Status:** `Playing`\n🎧 **Request by:** {requester}",
-                        reply_markup=keyboard,
+                        reply_markup=InlineKeyboardMarkup(buttons),
+                        caption=f"💡 **[Video Live]({link}) stream started.**\n\n💭 **Chat:** `{chat_id}`\n🧸 **Request by:** {requester}",
                     )
                 except Exception as ep:
                     await loser.delete()

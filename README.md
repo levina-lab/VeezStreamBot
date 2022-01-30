@@ -16,13 +16,9 @@
 ## 📊 Stats
 [![CodeFactor](https://www.codefactor.io/repository/github/levina-lab/video-stream/badge)](https://www.codefactor.io/repository/github/levina-lab/video-stream)
 
-## 🧪 Get `SESSION_NAME` from below:
-
-[![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@levinalab/StringSession#main.py) ``Pyrogram``
-
 ## 🎭 Preview
 <p align="center">
-  <img src="https://telegra.ph/file/b8c1461bcbbad5664aa48.png">
+  <img src="https://telegra.ph/file/11e63eb2b59ad15a43a03.jpg">
 </p>
 
 ## ✨ Features
@@ -43,7 +39,7 @@
 ## 🛠 Commands:
 | Command | Description |
 | ------ | ------ |
-| `/mplay (query)` | play music from youtube |
+| `/play (query)` | play music from youtube |
 | `/vplay (query)` | play video from youtube |
 | `/vstream (live link)` | play video live streaming video |
 | `/pause` | pause the streaming (admin only) |
@@ -63,6 +59,11 @@
 | `/restart` | restart your bot directly without leaving telegram (sudo only) |
 | `/clean` | clean all raw files |
 | `/rmd` | clean all downloaded files |
+
+## Generate Pyrogram session string from below 🔻
+
+[![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@levinalab/StringSession#main.py)
+
 ## Heroku Deployment 💜
 The easy way to host this bot, deploy to Heroku, Change the app country to Europe (it will help to make the bot stable).
 

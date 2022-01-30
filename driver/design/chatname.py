@@ -1,4 +1,4 @@
-async def CT(ctitle):
+async def CHAT_TITLE(ctitle):
     string = ctitle
     font1 = list("𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ")
     font2 = list("𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅")
@@ -24,10 +24,8 @@ async def CT(ctitle):
     font31L = list("𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣")
     normal = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     normalL = list("abcdefghijklmnopqrstuvwxyz")
-    small = list("ᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘʀsᴛᴜᴠᴡxʏᴢ")
     cout = 0
     for XCB in font1:
-        string = string.replace(small[cout], normal[cout])
         string = string.replace(font1[cout], normal[cout])
         string = string.replace(font2[cout], normal[cout])
         string = string.replace(font3[cout], normal[cout])

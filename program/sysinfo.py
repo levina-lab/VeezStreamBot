@@ -39,9 +39,9 @@ async def give_sysinfo(client, message):
     
 **PlatForm :** `{splatform}`
 **PlatForm - Release :** `{platform_release}`
-**PlatFork - Version :** `{platform_version}`
+**PlatForm - Version :** `{platform_version}`
 **Architecture :** `{architecture}`
-**Hostname :** `{hostname}`
+**HostName :** `{hostname}`
 **IP :** `{ip_address}`
 **Mac :** `{mac_address}`
 **Processor :** `{processor}`

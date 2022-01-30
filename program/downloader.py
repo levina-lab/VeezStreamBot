@@ -2,10 +2,12 @@
 
 from __future__ import unicode_literals
 
-import asyncio
-import math
 import os
+import re
+import math
 import time
+import asyncio
+import lyricsgenius
 from random import randint
 from urllib.parse import urlparse
 
@@ -18,6 +20,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Message
 from youtube_search import YoutubeSearch
+from youtubesearchpython import VideosSearch
 from yt_dlp import YoutubeDL
 
 from config import BOT_USERNAME as bn
@@ -135,18 +138,33 @@ async def vsong(client, message):
         print(e)
 
 
-@Client.on_message(command(["lyric", f"lyric@{bn}"]))
-async def lyrics(_, message):
-    try:
-        if len(message.command) < 2:
-            await message.reply_text("» **give a lyric name too.**")
-            return
-        query = message.text.split(None, 1)[1]
-        rep = await message.reply_text("🔎 **searching lyrics...**")
-        resp = requests.get(
-            f"https://api-tede.herokuapp.com/api/lirik?l={query}"
-        ).json()
-        result = f"{resp['data']}"
-        await rep.edit(result)
-    except Exception:
-        await rep.edit("❌ **results of lyric not found.**\n\n» **please give a valid song name.**")
+@Client.on_message(command(["lyric", f"lyric@{bn}", "lyrics"]))
+async def get_lyric_genius(_, message: Message):
+    if len(message.command) < 2:
+        return await message.reply_text("**usage:**\n\n/lyrics (song name)")
+    m = await message.reply_text("🔍 Searching lyrics...")
+    query = message.text.split(None, 1)[1]
+    x = "OXaVabSRKQLqwpiYOn-E4Y7k3wj-TNdL5RfDPXlnXhCErbcqVvdCF-WnMR5TBctI"
+    y = lyricsgenius.Genius(x)
+    y.verbose = False
+    S = y.search_song(query, get_full_info=False)
+    if S is None:
+        return await m.edit("❌ `404` lyrics not found")
+    xxx = f"""
+**Song Name:** __{query}__
+**Artist Name:** {S.artist}
+**__Lyrics:__**
+{S.lyrics}"""
+    if len(xxx) > 4096:
+        await m.delete()
+        filename = "lyrics.txt"
+        with open(filename, "w+", encoding="utf8") as out_file:
+            out_file.write(str(xxx.strip()))
+        await message.reply_document(
+            document=filename,
+            caption=f"**OUTPUT:**\n\n`Lyrics Text`",
+            quote=False,
+        )
+        os.remove(filename)
+    else:
+        await m.edit(xxx)

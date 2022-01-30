@@ -2,6 +2,7 @@
 
 from driver.queues import QUEUE
 from pyrogram import Client, filters
+from program.utils.inline import menu_markup
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 from config import (
     ASSISTANT_NAME,
@@ -15,6 +16,7 @@ from config import (
 
 @Client.on_callback_query(filters.regex("cbstart"))
 async def cbstart(_, query: CallbackQuery):
+    await query.answer("home start")
     await query.edit_message_text(
         f"""✨ **Welcome [{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**\n
 💭 **[{BOT_NAME}](https://t.me/{BOT_USERNAME}) allows you to play music and video on groups through the new Telegram's video chats!**
@@ -56,21 +58,21 @@ async def cbstart(_, query: CallbackQuery):
 
 @Client.on_callback_query(filters.regex("cbhowtouse"))
 async def cbguides(_, query: CallbackQuery):
+    await query.answer("user guide")
     await query.edit_message_text(
-        f"""❓ **Basic Guide for using this bot:**
+        f"""❓ How to use this Bot ?, read the Guide below !
 
-1.) **First, add me to your group.**
-2.) **Then, promote me as administrator and give all permissions except Anonymous Admin.**
-3.) **After promoting me, type /reload in group to refresh the admin data.**
-3.) **Add @{ASSISTANT_NAME} to your group or type /userbotjoin to invite her.**
-4.) **Turn on the video chat first before start to play video/music.**
-5.) **Sometimes, reloading the bot by using /reload command can help you to fix some problem.**
+1.) First, add this bot to your Group.
+2.) Then, promote this bot as administrator on the Group also give all permissions except Anonymous admin.
+3.) After promoting this bot, type /reload in Group to update the admin data.
+3.) Invite @{ASSISTANT_NAME} to your group or type /userbotjoin to invite her (unfortunately the userbot will joined by itself when you type `/play (song name)` or `/vplay (song name)`).
+4.) Turn on/Start the video chat first before start to play video/music.
 
-📌 **If the userbot not joined to video chat, make sure if the video chat already turned on, or type /userbotleave then type /userbotjoin again.**
+`- END, EVERYTHING HAS BEEN SETUP -`
 
-💡 **If you have a follow-up questions about this bot, you can tell it on my support chat here: @{GROUP_SUPPORT}**
+📌 If the userbot not joined to video chat, make sure if the video chat already turned on and the userbot in the chat.
 
-⚡ __Powered by {BOT_NAME} A.I__""",
+💡 If you have a follow-up questions about this bot, you can tell it on my support chat here: @{GROUP_SUPPORT}.""",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("🔙 Go Back", callback_data="cbstart")]]
         ),
@@ -79,6 +81,7 @@ async def cbguides(_, query: CallbackQuery):
 
 @Client.on_callback_query(filters.regex("cbcmds"))
 async def cbcmds(_, query: CallbackQuery):
+    await query.answer("commands menu")
     await query.edit_message_text(
         f"""✨ **Hello [{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**
 
@@ -102,10 +105,11 @@ async def cbcmds(_, query: CallbackQuery):
 
 @Client.on_callback_query(filters.regex("cbbasic"))
 async def cbbasic(_, query: CallbackQuery):
+    await query.answer("basic commands")
     await query.edit_message_text(
         f"""🏮 here is the basic commands:
 
-» /mplay (song name/link) - play music on video chat
+» /play (song name/link) - play music on video chat
 » /vplay (video name/link) - play video on video chat
 » /vstream - play live video from yt live/m3u8
 » /playlist - show you the playlist
@@ -115,6 +119,7 @@ async def cbbasic(_, query: CallbackQuery):
 » /search (query) - search a youtube video link
 
 » /ping - show the bot ping status
+» /speedtest - run the bot server speedtest
 » /uptime - show the bot uptime status
 » /alive - show the bot alive info (in group)
 
@@ -127,6 +132,7 @@ async def cbbasic(_, query: CallbackQuery):
 
 @Client.on_callback_query(filters.regex("cbadmin"))
 async def cbadmin(_, query: CallbackQuery):
+    await query.answer("admin commands")
     await query.edit_message_text(
         f"""🏮 here is the admin commands:
 
@@ -149,6 +155,7 @@ async def cbadmin(_, query: CallbackQuery):
 
 @Client.on_callback_query(filters.regex("cbsudo"))
 async def cbsudo(_, query: CallbackQuery):
+    await query.answer("sudo commands")
     await query.edit_message_text(
         f"""🏮 here is the sudo commands:
 
@@ -168,28 +175,18 @@ async def cbsudo(_, query: CallbackQuery):
 
 @Client.on_callback_query(filters.regex("cbmenu"))
 async def cbmenu(_, query: CallbackQuery):
-    if query.message.sender_chat:
-        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
-        return await query.answer("💡 only admin with manage voice chats permission that can tap this button !", show_alert=True)
+        return await query.answer("💡 Only admin with manage video chat permission that can tap this button !", show_alert=True)
     chat_id = query.message.chat.id
+    user_id = query.message.from_user.id
+    buttons = menu_markup(user_id)
+    chat = query.message.chat.title
     if chat_id in QUEUE:
           await query.edit_message_text(
-              f"⚙️ **settings of** {query.message.chat.title}\n\n⏸ : pause stream\n▶️ : resume stream\n🔇 : mute userbot\n🔊 : unmute userbot\n⏹ : stop stream",
-              reply_markup=InlineKeyboardMarkup(
-                  [[
-                      InlineKeyboardButton("⏹", callback_data="cbstop"),
-                      InlineKeyboardButton("⏸", callback_data="cbpause"),
-                      InlineKeyboardButton("▶️", callback_data="cbresume"),
-                  ],[
-                      InlineKeyboardButton("🔇", callback_data="cbmute"),
-                      InlineKeyboardButton("🔊", callback_data="cbunmute"),
-                  ],[
-                      InlineKeyboardButton("🗑 Close", callback_data="cls")],
-                  ]
-             ),
-         )
+              f"⚙️ **Settings of** {chat}\n\n⏸ : pause stream\n▶️ : resume stream\n🔇 : mute userbot\n🔊 : unmute userbot\n⏹ : stop stream",
+              reply_markup=InlineKeyboardMarkup(buttons),
+          )
     else:
         await query.answer("❌ nothing is currently streaming", show_alert=True)
 
@@ -198,5 +195,5 @@ async def cbmenu(_, query: CallbackQuery):
 async def close(_, query: CallbackQuery):
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
-        return await query.answer("💡 only admin with manage voice chats permission that can tap this button !", show_alert=True)
+        return await query.answer("💡 Only admin with manage video chat permission that can tap this button !", show_alert=True)
     await query.message.delete()
