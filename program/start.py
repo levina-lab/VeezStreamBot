@@ -48,23 +48,23 @@ async def _human_time_duration(seconds):
     return ", ".join(parts)
 
 
-@ᴄʟɪᴇɴᴛ.ᴏɴ_ᴍᴇssᴀɢᴇ(ᴄᴏᴍᴍᴀɴᴅ("sᴛᴀʀᴛ") & ғɪʟᴛᴇʀs.ᴘʀɪᴠᴀᴛᴇ & ~ғɪʟᴛᴇʀs.ɢʀᴏᴜᴘ & ~ғɪʟᴛᴇʀs.ᴇᴅɪᴛᴇᴅ)
-ᴀsʏɴᴄ ᴅᴇғ sᴛᴀʀᴛ_(ᴄʟɪᴇɴᴛ: ᴄʟɪᴇɴᴛ, ᴍᴇssᴀɢᴇ: ᴍᴇssᴀɢᴇ):
-    ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ʀᴇᴘʟʏ_sᴛɪᴄᴋᴇʀ("ᴄᴀᴀᴄᴀɢǫᴀᴀxᴋʙᴀᴀɪᴄ_ᴍʜ𝟷ᴊᴜʀʟ_s𝟺ᴋɢᴋᴀ𝟻ʜɪᴅᴋ_ʀʀʟ𝟶ɢʏᴡᴀᴀɪᴇᴄɢᴀᴄᴢ𝟿ʏʀᴜxɴᴜᴄʜᴘ𝟻ᴋɢᴊғɪᴡǫ")
-    ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ʀᴇᴘʟʏ_ᴘʜᴏᴛᴏ(
-        ᴘʜᴏᴛᴏ=ғ"ʜᴛᴛᴘs://ᴛᴇ.ʟᴇɢʀᴀ.ᴘʜ/ғɪʟᴇ/ғғʙʙ𝟶𝟿𝟼ᴅ𝟷𝟶ᴅᴅ𝟹𝟼ᴀᴅ𝟺𝟻𝟹𝟹𝟽.ᴊᴘɢ",
-        ᴄᴀᴘᴛɪᴏɴ=ғ"""**━━━━━━━━━━━━ 🌺🌻🌹🌷━━━━━━━━━━
+@Client.on_message(command("start") & filters.private & ~filters.group & ~filters.edited)
+async def start_(client: Client, message: Message):
+    await message.reply_sticker("CAACAgQAAxkBAAIC_mH1JUrL_s4kgKA5hiDk_Rrl0GYWAAIeCgACz9YRUXNuChP5kGjfIwQ")
+    await message.reply_photo(
+        photo=f"https://te.legra.ph/file/ffbb096d10dd36ad45337.jpg",
+        caption=f"""**━━━━━━━━━━━━ 🌺🌻🌹🌷━━━━━━━━━━
 ━━━━━━━━━━━━━ 🌺🌻🌹🌷━━━━━━━━━━━━━
-😊ʜɪ ɪᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ᴠᴏɪᴄᴇ ᴍᴜsɪᴄ ʙᴏᴛ... ᴅᴇᴘʟᴏʏ ʙʏ : @sᴀɴᴛʜᴜ_ᴍᴜsɪᴄ_ʙᴏᴛ
+😊ʜɪ ɪᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ᴠᴏɪᴄᴇ ᴍᴜsɪᴄ ʙᴏᴛ... ᴅᴇᴘʟᴏʏ ʙʏ : @santhu_music_bot
 ┏━━━━━━━━━━━━━━━━━┓ 🌺🌻🌹🌷🌺🌻🌹
 ┣» ᴏᴘ ᴍᴜꜱɪᴄ ᴘʟᴀʏᴇʀ ʙᴏᴛ. 
 ┣» ʜɪɢʜ ǫᴜᴀʟɪᴛʏ  ᴍᴜꜱɪᴄ.
 ┣» ᴀᴅᴠᴀɴᴄᴇᴅ ꜰᴇᴀᴛᴜʀᴇꜱ.
 ┣» ꜱᴜᴘᴇʀꜰᴀꜱᴛ ꜱᴘᴇᴇᴅ. 
-┣» [𝐃𝐄𝐏𝐋𝐎𝐘 𝐁𝐘 ❤️](ʜᴛᴛᴘs://ᴛ.ᴍᴇ/sᴀɴᴛʜᴜ_ᴍᴜsɪᴄ_ʙᴏᴛ)
+┣» [𝐃𝐄𝐏𝐋𝐎𝐘 𝐁𝐘 ❤️](https://t.me/santhu_music_bot)
 ┗━━━━━━━━━━━━━━━━━┛
-[𝐎𝐖𝐍𝐄𝐑 ❤️](ʜᴛᴛᴘs://ᴛ.ᴍᴇ/sᴀɴᴛʜᴜ_ᴍᴜsɪᴄ_ʙᴏᴛ)
-𝐈𝐟 𝐘𝐨𝐮 𝐇𝐚𝐯𝐞 𝐀𝐧𝐲 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 𝐀𝐧𝐝 𝐇𝐞𝐥𝐩 𝐓𝐡𝐞𝐧 𝐃𝐦 𝐌𝐲 𝐁𝐨𝐬𝐬 = [𝐒𝐀𝐍𝐓𝐇𝐔❤️](ʜᴛᴛᴘs://ᴛ.ᴍᴇ/sᴀɴᴛʜᴜ_ᴍᴜsɪᴄ_ʙᴏᴛ)
+[𝐎𝐖𝐍𝐄𝐑 ❤️](https://t.me/santhu_music_bot)
+𝐈𝐟 𝐘𝐨𝐮 𝐇𝐚𝐯𝐞 𝐀𝐧𝐲 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 𝐀𝐧𝐝 𝐇𝐞𝐥𝐩 𝐓𝐡𝐞𝐧 𝐃𝐦 𝐌𝐲 𝐁𝐨𝐬𝐬 = [𝐒𝐀𝐍𝐓𝐇𝐔❤️](https://t.me/santhu_music_bot)
 ━━━━━━━━━━━━━━━━━━━━━━**""",
     reply_markup=InlineKeyboardMarkup(
             [
