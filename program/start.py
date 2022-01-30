@@ -48,42 +48,48 @@ async def _human_time_duration(seconds):
     return ", ".join(parts)
 
 
-@Client.on_message(
-    command(["start", f"start@{BOT_USERNAME}"]) & filters.private & ~filters.edited
-)
-async def start_(client: Client, message: Message):
-    await message.reply_text(
-        f"""✨ **Welcome {message.from_user.mention()} !**\n
-💭 [{BOT_NAME}](https://t.me/{BOT_USERNAME}) **Allows you to play music and video on groups through the new Telegram's video chats!**
-
-💡 **Find out all the Bot's commands and how they work by clicking on the » 📚 Commands button!**
-
-🔖 **To know how to use this bot, please click on the » ❓ Basic Guide button!**
-""",
-        reply_markup=InlineKeyboardMarkup(
+@ᴄʟɪᴇɴᴛ.ᴏɴ_ᴍᴇssᴀɢᴇ(ᴄᴏᴍᴍᴀɴᴅ("sᴛᴀʀᴛ") & ғɪʟᴛᴇʀs.ᴘʀɪᴠᴀᴛᴇ & ~ғɪʟᴛᴇʀs.ɢʀᴏᴜᴘ & ~ғɪʟᴛᴇʀs.ᴇᴅɪᴛᴇᴅ)
+ᴀsʏɴᴄ ᴅᴇғ sᴛᴀʀᴛ_(ᴄʟɪᴇɴᴛ: ᴄʟɪᴇɴᴛ, ᴍᴇssᴀɢᴇ: ᴍᴇssᴀɢᴇ):
+    ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ʀᴇᴘʟʏ_sᴛɪᴄᴋᴇʀ("ᴄᴀᴀᴄᴀɢǫᴀᴀxᴋʙᴀᴀɪᴄ_ᴍʜ𝟷ᴊᴜʀʟ_s𝟺ᴋɢᴋᴀ𝟻ʜɪᴅᴋ_ʀʀʟ𝟶ɢʏᴡᴀᴀɪᴇᴄɢᴀᴄᴢ𝟿ʏʀᴜxɴᴜᴄʜᴘ𝟻ᴋɢᴊғɪᴡǫ")
+    ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ʀᴇᴘʟʏ_ᴘʜᴏᴛᴏ(
+        ᴘʜᴏᴛᴏ=ғ"ʜᴛᴛᴘs://ᴛᴇ.ʟᴇɢʀᴀ.ᴘʜ/ғɪʟᴇ/ғғʙʙ𝟶𝟿𝟼ᴅ𝟷𝟶ᴅᴅ𝟹𝟼ᴀᴅ𝟺𝟻𝟹𝟹𝟽.ᴊᴘɢ",
+        ᴄᴀᴘᴛɪᴏɴ=ғ"""**━━━━━━━━━━━━ 🌺🌻🌹🌷━━━━━━━━━━
+━━━━━━━━━━━━━ 🌺🌻🌹🌷━━━━━━━━━━━━━
+😊ʜɪ ɪᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ᴠᴏɪᴄᴇ ᴍᴜsɪᴄ ʙᴏᴛ... ᴅᴇᴘʟᴏʏ ʙʏ : @sᴀɴᴛʜᴜ_ᴍᴜsɪᴄ_ʙᴏᴛ
+┏━━━━━━━━━━━━━━━━━┓ 🌺🌻🌹🌷🌺🌻🌹
+┣» ᴏᴘ ᴍᴜꜱɪᴄ ᴘʟᴀʏᴇʀ ʙᴏᴛ. 
+┣» ʜɪɢʜ ǫᴜᴀʟɪᴛʏ  ᴍᴜꜱɪᴄ.
+┣» ᴀᴅᴠᴀɴᴄᴇᴅ ꜰᴇᴀᴛᴜʀᴇꜱ.
+┣» ꜱᴜᴘᴇʀꜰᴀꜱᴛ ꜱᴘᴇᴇᴅ. 
+┣» [𝐃𝐄𝐏𝐋𝐎𝐘 𝐁𝐘 ❤️](ʜᴛᴛᴘs://ᴛ.ᴍᴇ/sᴀɴᴛʜᴜ_ᴍᴜsɪᴄ_ʙᴏᴛ)
+┗━━━━━━━━━━━━━━━━━┛
+[𝐎𝐖𝐍𝐄𝐑 ❤️](ʜᴛᴛᴘs://ᴛ.ᴍᴇ/sᴀɴᴛʜᴜ_ᴍᴜsɪᴄ_ʙᴏᴛ)
+𝐈𝐟 𝐘𝐨𝐮 𝐇𝐚𝐯𝐞 𝐀𝐧𝐲 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 𝐀𝐧𝐝 𝐇𝐞𝐥𝐩 𝐓𝐡𝐞𝐧 𝐃𝐦 𝐌𝐲 𝐁𝐨𝐬𝐬 = [𝐒𝐀𝐍𝐓𝐇𝐔❤️](ʜᴛᴛᴘs://ᴛ.ᴍᴇ/sᴀɴᴛʜᴜ_ᴍᴜsɪᴄ_ʙᴏᴛ)
+━━━━━━━━━━━━━━━━━━━━━━**""",
+    reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "➕ Add me to your Group ➕",
+                        "💞 ɴᴀɴᴜ ᴀᴅᴅ ᴄʜᴇsᴜᴋᴏɴᴅɪ 🥺",
                         url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
                     )
                 ],
                 [InlineKeyboardButton("❓ Basic Guide", callback_data="cbhowtouse")],
                 [
-                    InlineKeyboardButton("📚 Commands", callback_data="cbcmds"),
-                    InlineKeyboardButton("❤️ Donate", url=f"https://t.me/{OWNER_NAME}"),
+                    InlineKeyboardButton("🥰 Commands", callback_data="cbcmds"),
+                    InlineKeyboardButton("❤️ Donate", url=f"https://t.me/santhu_music_bot"),
                 ],
                 [
                     InlineKeyboardButton(
-                        "👥 Official Group", url=f"https://t.me/{GROUP_SUPPORT}"
+                        "🙂 ɴᴇᴛᴡᴏʀᴋ", url=f"https://t.me/santhuvc"
                     ),
                     InlineKeyboardButton(
-                        "📣 Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}"
+                        "😁 sᴀɴᴛʜᴜ Channel", url=f"https://t.me/santhubotupadates"
                     ),
                 ],
                 [
                     InlineKeyboardButton(
-                        "🌐 Source Code", url="https://github.com/levina-lab/video-stream"
+                        "😊 Source Code", url="https://t.me/santhuvc"
                     )
                 ],
             ]
@@ -104,9 +110,9 @@ async def alive(c: Client, message: Message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("✨ Group", url=f"https://t.me/{GROUP_SUPPORT}"),
+                InlineKeyboardButton("✨ ɴᴇᴛᴡᴏʀᴋ", url=f"https://t.me/santhuvc"),
                 InlineKeyboardButton(
-                    "📣 Channel", url=f"https://t.me/{UPDATES_CHANNEL}"
+                    "😇 sᴀɴᴛʜᴜ ɢʀᴏᴜᴘ", url=f"https://t.me/santhuvc"
                 ),
             ]
         ]
@@ -149,17 +155,17 @@ async def new_chat(c: Client, m: Message):
     for member in m.new_chat_members:
         if member.id == bot_id:
             return await m.reply(
-                "❤️ Thanks for adding me to the **Group** !\n\n"
+                "❤️ ɴᴀɴᴜ ᴀᴅᴅ ᴄʜᴇsɪɴᴅʜᴜᴋᴜ ᴛʜᴀɴᴋs**Group** !\n\n"
                 "Appoint me as administrator in the **Group**, otherwise I will not be able to work properly, and don't forget to type `/userbotjoin` for invite the assistant.\n\n"
                 "Once done, then type `/reload`",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("📣 Channel", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                            InlineKeyboardButton("💭 Support", url=f"https://t.me/{GROUP_SUPPORT}")
+                            InlineKeyboardButton("📣 sᴀɴᴛʜᴜ", url=f"https://t.me/santhuvc"),
+                            InlineKeyboardButton("💭 ɴᴇᴛᴡᴏʀᴋ", url=f"https://t.me/santhuvc")
                         ],
                         [
-                            InlineKeyboardButton("👤 Assistant", url=f"https://t.me/{ass_uname}")
+                            InlineKeyboardButton("👤 sᴀɴᴛʜᴜ ᴀssɪsᴛᴀɴᴛ", url=f"https://t.me/santhu_music_bot")
                         ]
                     ]
                 )
