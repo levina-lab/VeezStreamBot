@@ -44,7 +44,7 @@
 | ------ | ------ |
 | `/play (query)` | play music from youtube |
 | `/vplay (query)` | play video from youtube |
-| `/vstream (live link)` | play video live streaming video |
+| `/stream (live link)` | play video live streaming video |
 | `/pause` | pause the streaming (admin only) |
 | `/resume` | resume the streaming (admin only) |
 | `/skip` | switch to next stream (admin only) |
