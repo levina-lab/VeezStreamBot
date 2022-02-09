@@ -1,0 +1,64 @@
+name: Bug Report
+description: File a bug report
+title: "[BUG REPORT]"
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: Your telegram username or email ID.
+      placeholder: ex. @username or email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: "A bug happened!"
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of Video Stream are you running?
+      options:
+        - 0.6.2
+        - 0.6.0
+        - 3.5
+        - 3.0
+    validations:
+      required: true
+  - type: dropdown
+    id: hosted
+    attributes:
+      label: Hosted On
+      description: You Hosted Video Stream In Which Platform?
+      options:
+        - Vps
+        - Heroku
+        - Other
+        - Didn't Deployed Yet
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Acknowledgement
+      description: By submitting this issue, you agree that you have read the documentation in the README.md section.
+      options:
+        - label: I have followed all of the above steps.
+          required: true

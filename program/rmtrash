@@ -48,3 +48,5 @@ async def cleanup(_, message: Message):
         await message.reply_text("✅ **cleaned**")
     else:
         await message.reply_text("✅ **already cleaned**")
+
+# this module has deactivated because no longer used if you want to take the code just take it and use it, Thanks

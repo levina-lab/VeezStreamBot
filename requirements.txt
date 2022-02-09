@@ -5,8 +5,8 @@ py-tgcalls
 pyrogram
 youtube-search-python
 yt-dlp
+lyricsgenius
 speedtest-cli
-git+https://github.com/ytdl-org/youtube-dl@master
 youtube-search
 python-dotenv
 dnspython
@@ -19,4 +19,3 @@ motor
 psutil
 future
 wget
-lyricsgenius

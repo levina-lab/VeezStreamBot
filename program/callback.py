@@ -85,7 +85,7 @@ async def cbcmds(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""✨ **Hello [{query.message.chat.first_name}](tg://user?id={query.message.chat.id}) !**
 
-» **press the button below to read the explanation and see the list of available commands !**
+» Choose the menu below to read the explanation & see the list of available Commands !
 
 ⚡ __Powered by {BOT_NAME} A.I__""",
         reply_markup=InlineKeyboardMarkup(
@@ -119,9 +119,8 @@ async def cbbasic(_, query: CallbackQuery):
 » /search (query) - search a youtube video link
 
 » /ping - show the bot ping status
-» /speedtest - run the bot server speedtest
 » /uptime - show the bot uptime status
-» /alive - show the bot alive info (in group)
+» /alive - show the bot alive info (in Group only)
 
 ⚡️ __Powered by {BOT_NAME} AI__""",
         reply_markup=InlineKeyboardMarkup(
@@ -159,12 +158,20 @@ async def cbsudo(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""🏮 here is the sudo commands:
 
-» /rmw - clean all raw files
-» /rmd - clean all downloaded files
+» /gban (`username` or `user id`) - for global banned people
+» /ungban (`username` or `user id`) - for un-global banned people
+» /speedtest - run the bot server speedtest
 » /sysinfo - show the system information
 » /update - update your bot to latest version
 » /restart - restart your bot
 » /leaveall - order userbot to leave from all group
+» /leavebot (`chat id`) - order bot to leave from the group you specify
+
+» /eval - execute any code
+» /sh - run any command
+
+» /broadcast (`message`) - send a broadcast message to all groups entered by bot
+» /broadcast_pin (`message`) - send a broadcast message to all groups entered by bot with the chat pin
 
 ⚡ __Powered by {BOT_NAME} AI__""",
         reply_markup=InlineKeyboardMarkup(

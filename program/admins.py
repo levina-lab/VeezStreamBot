@@ -1,12 +1,18 @@
 from cache.admins import admins
 from driver.veez import call_py, bot
 from pyrogram import Client, filters
+from driver.design.thumbnail import thumb
+from driver.design.chatname import CHAT_TITLE
 from driver.queues import QUEUE, clear_queue
 from driver.filters import command, other_filters
 from driver.decorators import authorized_users_only
 from driver.utils import skip_current_song, skip_item
-from program.utils.inline import stream_markup, close_mark, back_mark
-from config import BOT_USERNAME, GROUP_SUPPORT, IMG_3, UPDATES_CHANNEL
+from program.utils.inline import (
+    stream_markup,
+    close_mark,
+    back_mark,
+)
+from config import BOT_USERNAME, GROUP_SUPPORT, IMG_5, UPDATES_CHANNEL
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -31,26 +37,32 @@ async def update_admin(client, message):
 
 @Client.on_message(command(["skip", f"skip@{BOT_USERNAME}", "vskip"]) & other_filters)
 @authorized_users_only
-async def skip(client, m: Message):
+async def skip(c: Client, m: Message):
     await m.delete()
     user_id = m.from_user.id
     chat_id = m.chat.id
     if len(m.command) < 2:
         op = await skip_current_song(chat_id)
         if op == 0:
-            await m.reply("❌ nothing is currently playing")
+            await c.send_message(chat_id, "❌ nothing is currently playing")
         elif op == 1:
-            await m.reply("✅ __Queues__ **is empty.**\n\n**• userbot leaving voice chat**")
+            await c.send_message(chat_id, "» There's no more music in queue to skip, userbot leaving video chat.")
         elif op == 2:
-            await m.reply("🗑️ **Clearing the Queues**\n\n**• userbot leaving voice chat**")
+            await c.send_message(chat_id, "🗑️ Clearing the **Queues**\n\n**• userbot** leaving video chat.")
         else:
             buttons = stream_markup(user_id)
             requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-            await m.send_photo(
+            thumbnail = f"{IMG_5}"
+            title = f"{op[0]}"
+            userid = m.from_user.id
+            gcname = m.chat.title
+            ctitle = await CHAT_TITLE(gcname)
+            image = await thumb(thumbnail, title, userid, ctitle)
+            await c.send_photo(
                 chat_id,
-                photo=f"{IMG_3}",
+                photo=image,
                 reply_markup=InlineKeyboardMarkup(buttons),
-                caption=f"⏭ **Skipped to the next track.**\n\n🗂 **Name:** [{op[0]}]({op[1]})\n💭 **Chat:** `{chat_id}`\n🧸 **Request by:** {requester}",
+                caption=f"⏭ **Skipped** to the next track.\n\n🗂 **Name:** [{op[0]}]({op[1]})\n💭 **Chat:** `{chat_id}`\n🧸 **Request by:** {requester}",
             )
     else:
         skip = m.text.split(None, 1)[1]
@@ -103,7 +115,7 @@ async def pause(client, m: Message):
         except Exception as e:
             await m.reply(f"🚫 **error:**\n\n`{e}`")
     else:
-        await m.reply("❌ **nothing in streaming**")
+        await m.reply("❌ **nothing is streaming**")
 
 
 @Client.on_message(
@@ -121,7 +133,7 @@ async def resume(client, m: Message):
         except Exception as e:
             await m.reply(f"🚫 **error:**\n\n`{e}`")
     else:
-        await m.reply("❌ **nothing in streaming**")
+        await m.reply("❌ **nothing is streaming**")
 
 
 @Client.on_message(
@@ -139,7 +151,7 @@ async def mute(client, m: Message):
         except Exception as e:
             await m.reply(f"🚫 **error:**\n\n`{e}`")
     else:
-        await m.reply("❌ **nothing in streaming**")
+        await m.reply("❌ **nothing is streaming**")
 
 
 @Client.on_message(
@@ -157,7 +169,7 @@ async def unmute(client, m: Message):
         except Exception as e:
             await m.reply(f"🚫 **error:**\n\n`{e}`")
     else:
-        await m.reply("❌ **nothing in streaming**")
+        await m.reply("❌ **nothing is streaming**")
 
 
 @Client.on_callback_query(filters.regex("cbpause"))

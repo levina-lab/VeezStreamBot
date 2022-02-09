@@ -1,11 +1,14 @@
 {
     "name": "Video x Music Stream Bot",
-    "description": "Telegram bot for Streaming Video & Music trought the Telegram Group Video Chat, powered by pytgcalls and pyrogram",
+    "description": "Telegram bot for Streaming Video & Music trought the Telegram Group Video Chat, powered by PyTgCalls and Pyrogram",
     "logo": "https://telegra.ph/file/1c41ded2dd871eb36bd7e.png",
     "keywords": [
-        "pytgcalls",
+        "py-tgcalls",
         "telegram bot",
         "video stream",
+        "live stream",
+        "music stream",
+        "mongodb",
         "pyrogram"
     ],
     "website": "https://t.me/levinachannel",
@@ -25,7 +28,7 @@
             "required": true
         },
         "BOT_USERNAME": {
-            "description": "your bot username from @BotFather",
+            "description": "fill with your bot username from @BotFather but without using '@' symbol",
             "required": true
         },
         "BOT_NAME": {
@@ -40,9 +43,19 @@
             "description": "fill with the pyrogram String Session",
             "required": true
         },
-        "SUDO_USERS": {
-            "description": "list of user ids to be added to sudo member list, or just fill with your id",
+        "MONGODB_URL": {
+            "description": "fill with the mongodb url you created from cloud.mongodb.com (tutorial about how to make it, find it on @VeezSupportGroup)",
             "required": true
+        },
+        "SUDO_USERS": {
+            "description": "list of user id to be added to sudo member list, or just fill with your id",
+            "required": true,
+            "value": "1757169682"
+        },
+        "UPSTREAM_REPO": {
+            "description": "This is needed for update feature, if you deployed forked repo put your forked repo link here, if not just leave it as it",
+            "required": true,
+            "value": "https://github.com/levina-lab/video-stream"
         },
         "GROUP_SUPPORT": {
             "description": "if you have group, then fill the group username here without @",

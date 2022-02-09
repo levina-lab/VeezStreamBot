@@ -13,7 +13,7 @@
     <a href="https://github.com/levina-lab/video-stream/network/members"> <img src="https://img.shields.io/github/stars/levina-lab/video-stream?color=red&logo=github&logoColor=blue&style=flat-square" /></a>  
 </p>
 
-## 📊 Stats
+## 📊 CodeFactor Stats
 [![CodeFactor](https://www.codefactor.io/repository/github/levina-lab/video-stream/badge)](https://www.codefactor.io/repository/github/levina-lab/video-stream)
 
 ## 🎭 Preview
@@ -34,6 +34,9 @@
 - Control With Button support
 - Volume Control
 - Userbot Auto Join
+- Broadcast & Global Ban
+- Shell Executor (eval & sh)
+- SpeedTest Runner
 - Direct Updater
 
 ## 🛠 Commands:
@@ -57,17 +60,18 @@
 | `/leaveall` | order the userbot to leave from all group (sudo only) |
 | `/update` | update your bot directly without leaving telegram (sudo only) |
 | `/restart` | restart your bot directly without leaving telegram (sudo only) |
-| `/clean` | clean all raw files |
-| `/rmd` | clean all downloaded files |
+| `/speedtest` | run server speedtest that you use to run your bot |
+| `/broadcast` | brodcast message to all group that in bot database |
+| `/gban & /ungban` | use this to gban someone and ungban them |
 
-## Generate Pyrogram session string from below 🔻
+## Generate Session Name 🔻
 
 [![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@levinalab/StringSession#main.py)
 
 ## Heroku Deployment 💜
-The easy way to host this bot, deploy to Heroku, Change the app country to Europe (it will help to make the bot stable).
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/levina-lab/video-stream)
+<h3 align="center">Click The button below for deploy your bot to Heroku, Note: Set the app country to Europe (it will help to make the bot stable).</h3>
+<p align="center"><a href="https://heroku.com/deploy"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" target="_blank"/></a></p>
 
 ## VPS Deployment 📡
 Get the best Quality of streaming performance by hosting it on VPS, here's the step's:
@@ -93,9 +97,7 @@ python3 main.py # run the bot.
 
 - [Levina](https://github.com/levina-lab) ``Dev``
 - [Zxce3](https://github.com/Zxce3) ``Dev``
-- [DoellBarr](https://github.com/DoellBarr) ``Dev``
 - [tofikdn](https://github.com/tofikdn) ``Dev``
-- [Makoto-XD](https://github.com/Makoto-XD) ``Supporter``
 - [Laky's](https://github.com/Laky-64) for [``py-tgcalls``](https://github.com/pytgcalls/pytgcalls)
 - [Dan](https://github.com/delivrance) for [``Pyrogram``](https://github.com/pyrogram)
 

@@ -14,20 +14,22 @@ from pyrogram.types import Message
 
 
 @Client.on_message(command(["speedtest", f"speedtest@{bname}"]) & ~filters.edited)
-async def statsguwid(_, message: Message):
-    m = await message.reply_text("Running server speedtest.")
+@sudo_users_only
+async def run_speedtest(_, message: Message):
+    m = await message.reply_text("⚡️ running server speedtest")
     try:
         test = speedtest.Speedtest()
         test.get_best_server()
-        m = await m.edit("Running download speedtest..")
+        m = await m.edit("⚡️ running download speedtest..")
         test.download()
-        m = await m.edit("Running upload speedtest...")
+        m = await m.edit("⚡️ running upload speedtest...")
         test.upload()
         test.results.share()
         result = test.results.dict()
     except Exception as e:
-        return await m.edit(e)
-    m = await m.edit("Sharing speedtest results....")
+        await m.edit(e)
+        return
+    m = await m.edit("🔄 sharing speedtest results")
     path = wget.download(result["share"])
 
     output = f"""💡 **SpeedTest Results**

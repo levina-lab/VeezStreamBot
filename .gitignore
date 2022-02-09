@@ -7,7 +7,6 @@ __pycache__
 raw_files
 downloads
 venv
-local.env
 *.jpg
 *png
 *.raw
