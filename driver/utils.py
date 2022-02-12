@@ -1,7 +1,13 @@
 import asyncio
 from driver.core import bot, calls
 from driver.database.dbqueue import remove_active_chat
-from driver.queues import QUEUE, clear_queue, get_queue, pop_an_item, clean_trash
+from driver.queues import (
+    QUEUE,
+    clear_queue,
+    get_queue,
+    pop_an_item,
+    clear_trash,
+)
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pytgcalls.types import Update

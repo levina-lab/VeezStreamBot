@@ -18,12 +18,12 @@ def clean_trash(file_name: str, cid: int, clear_all: bool = False):
 
 
 def add_to_queue(chat_id, songname, link, ref, type, quality):
-    if chat_id in QUEUE:
-        chat_queue = QUEUE[chat_id]
-        chat_queue.append([songname, link, ref, type, quality])
-        return int(len(chat_queue) - 1)
-    else:
-        QUEUE[chat_id] = [[songname, link, ref, type, quality]]
+   if chat_id in QUEUE:
+      chat_queue = QUEUE[chat_id]
+      chat_queue.append([songname, link, ref, type, quality])
+      return int(len(chat_queue) -1)
+   else:
+      QUEUE[chat_id] = [[songname, link, ref, type, quality]]
 
 
 def get_queue(chat_id):
@@ -34,22 +34,22 @@ def get_queue(chat_id):
         return 0
 
 
+
 def pop_an_item(chat_id):
-    if chat_id in QUEUE:
-        chat_queue = QUEUE[chat_id]
-        chat_queue.pop(0)
-        return 1
-    else:
-        return 0
+   if chat_id in QUEUE:
+      chat_queue = QUEUE[chat_id]
+      chat_queue.pop(0)
+      return 1
+   else:
+      return 0
 
 
 def clear_queue(chat_id):
-    if chat_id in QUEUE:
-        # auto remove tg download file trash
-        for i in QUEUE[chat_id]:
-            if "t.me" in i[2]:
-                clean_trash(i[1], chat_id, True)
-        QUEUE.pop(chat_id)
-        return 1
-    else:
-        return 0
+   if chat_id in QUEUE:
+      for i in QUEUE[chat_id]:
+         if "t.me" in i[2]:
+            clean_trash(i[1], chat_id, True)
+      QUEUE.pop(chat_id)
+      return 1
+   else:
+      return 0
