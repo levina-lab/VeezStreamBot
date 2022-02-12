@@ -115,7 +115,7 @@ async def alive(c: Client, message: Message):
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     BOT_NAME = (await c.get_me()).first_name
-
+    
     keyboard = InlineKeyboardMarkup(
         [
             [
