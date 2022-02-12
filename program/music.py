@@ -72,7 +72,7 @@ async def play(c: Client, m: Message):
         )
         return await bot.leave_chat(chat_id)
     if await is_gbanned_user(user_id):
-        await message.reply_text(f"❗️ {user_xd} **You've blocked from using this bot!**")
+        await m.reply_text(f"❗️ {user_xd} **You've blocked from using this bot!**")
         return
     if m.sender_chat:
         return await m.reply_text(
