@@ -1,7 +1,7 @@
 import traceback
 
 from cache.admins import admins
-from driver.core import calls, bot
+from driver.core import calls
 from pyrogram import Client, filters
 from driver.design.thumbnail import thumb
 from driver.design.chatname import CHAT_TITLE
@@ -19,17 +19,13 @@ from driver.database.dbqueue import (
 from program.utils.inline import (
     stream_markup,
     close_mark,
-    back_mark,
-)
+    )
 from config import (
     BOT_USERNAME,
-    GROUP_SUPPORT,
     IMG_5,
-    UPDATES_CHANNEL,
-)
+    )
 from pyrogram.types import (
     CallbackQuery,
-    InlineKeyboardButton,
     InlineKeyboardMarkup,
     Message,
 )
