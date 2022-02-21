@@ -1,29 +1,19 @@
 # Copyright (C) 2021 By Veez Music-Project
 
-import os
-import re
-import time
-import asyncio
 import traceback
 
 import lyricsgenius
-
-import aiofiles
-import aiohttp
 import requests
 import wget
 import yt_dlp
 from pyrogram import Client, filters
-from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Message
 from youtube_search import YoutubeSearch
-from youtubesearchpython import VideosSearch
 from yt_dlp import YoutubeDL
 
 from config import BOT_USERNAME as bn
 from driver.decorators import check_blacklist
-from driver.filters import command, other_filters
-from driver.database.dbpunish import is_gbanned_user
+from driver.filters import command
 from driver.utils import remove_if_exists
 
 

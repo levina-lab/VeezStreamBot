@@ -1,7 +1,6 @@
 from config import BOT_USERNAME
 from driver.decorators import check_blacklist
 from driver.filters import command
-from driver.database.dbpunish import is_gbanned_user
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch

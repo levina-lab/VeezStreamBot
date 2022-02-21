@@ -1,12 +1,10 @@
 import re
 import sys
-import shutil
 import subprocess
 import traceback
 
 from time import time
 from io import StringIO
-from sys import version as pyver
 from inspect import getfullargspec
 
 from config import BOT_USERNAME as bname

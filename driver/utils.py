@@ -1,7 +1,5 @@
 import asyncio
 import os
-
-from config import IMG_5
 from driver.core import bot, calls, user
 from driver.database.dbqueue import remove_active_chat
 from driver.queues import (

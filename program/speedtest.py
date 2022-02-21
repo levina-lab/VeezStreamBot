@@ -4,8 +4,7 @@ import wget
 import speedtest
 
 from PIL import Image
-from program.utils.formatters import bytes
-from driver.filters import command, other_filters
+from driver.filters import command
 from driver.decorators import sudo_users_only
 from config import BOT_USERNAME as bname
 from driver.core import bot as app
