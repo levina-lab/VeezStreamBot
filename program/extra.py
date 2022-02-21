@@ -148,7 +148,7 @@ async def bot_statistic(c: Client, message: Message):
 ➛ **Pyrogram Version** : `{pyrover}`
 
 🤖 bot version: `{ver}`"""
-    
+
     await msg.edit(tgm, disable_web_page_preview=True)
 
 
