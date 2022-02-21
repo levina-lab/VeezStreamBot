@@ -39,7 +39,6 @@ from pyrogram.types import (
 @authorized_users_only
 @check_blacklist()
 async def update_admin(client, message: Message):
-    global admins
     new_admins = []
     new_ads = await client.get_chat_members(message.chat.id, filter="administrators")
     for u in new_ads:
