@@ -16,12 +16,11 @@ def changeImageSize(maxWidth, maxHeight, image):
         img = Image.new("RGBA", (maxWidth, maxHeight))
         img.paste(newImage, (int((maxWidth - maxHeight) / 2), 0))
         return img
-    else:
-        widthRatio = maxWidth / image.size[0]
-        heightRatio = maxHeight / image.size[1]
-        newWidth = int(widthRatio * image.size[0])
-        newHeight = int(heightRatio * image.size[1])
-        newImage = image.resize((newWidth, newHeight))
+    widthRatio = maxWidth / image.size[0]
+    heightRatio = maxHeight / image.size[1]
+    newWidth = int(widthRatio * image.size[0])
+    newHeight = int(heightRatio * image.size[1])
+    newImage = image.resize((newWidth, newHeight))
     return newImage
 
 

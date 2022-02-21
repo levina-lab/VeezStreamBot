@@ -63,8 +63,7 @@ async def ytdl(link):
     stdout, stderr = await proc.communicate()
     if stdout:
         return 1, stdout.decode().split("\n")[0]
-    else:
-        return 0, stderr.decode()
+    return 0, stderr.decode()
 
 
 def convert_seconds(seconds):

@@ -44,43 +44,42 @@ async def skip_current_song(chat_id):
             await remove_active_chat(chat_id)
             clear_queue(chat_id)
             return 1
-        else:
-            try:
-                songname = chat_queue[1][0]
-                url = chat_queue[1][1]
-                link = chat_queue[1][2]
-                type = chat_queue[1][3]
-                Q = chat_queue[1][4]
-                if type == "music":
-                    await calls.change_stream(
-                        chat_id,
-                        AudioPiped(
-                            url,
-                            HighQualityAudio(),
-                        ),
+        try:
+            songname = chat_queue[1][0]
+            url = chat_queue[1][1]
+            link = chat_queue[1][2]
+            type = chat_queue[1][3]
+            Q = chat_queue[1][4]
+            if type == "music":
+                await calls.change_stream(
+                    chat_id,
+                    AudioPiped(
+                        url,
+                        HighQualityAudio(),
+                    ),
+                )
+            elif type == "video":
+                if Q == 720:
+                    hm = HighQualityVideo()
+                elif Q == 480:
+                    hm = MediumQualityVideo()
+                elif Q == 360:
+                    hm = LowQualityVideo()
+                await calls.change_stream(
+                    chat_id,
+                    AudioVideoPiped(
+                        url,
+                        HighQualityAudio(),
+                        hm
                     )
-                elif type == "video":
-                    if Q == 720:
-                        hm = HighQualityVideo()
-                    elif Q == 480:
-                        hm = MediumQualityVideo()
-                    elif Q == 360:
-                        hm = LowQualityVideo()
-                    await calls.change_stream(
-                        chat_id,
-                        AudioVideoPiped(
-                            url,
-                            HighQualityAudio(),
-                            hm
-                        )
-                    )
-                pop_an_item(chat_id)
-                return [songname, link, type]
-            except:
-                await calls.leave_group_call(chat_id)
-                await remove_active_chat(chat_id)
-                clear_queue(chat_id)
-                return 2
+                )
+            pop_an_item(chat_id)
+            return [songname, link, type]
+        except:
+            await calls.leave_group_call(chat_id)
+            await remove_active_chat(chat_id)
+            clear_queue(chat_id)
+            return 2
     else:
         return 0
 
