@@ -19,7 +19,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/licenses.html
 
 import asyncio
 
-from config import BOT_USERNAME, SUDO_USERS
+from config import BOT_USERNAME, SUDO_USERS, MY_CHANNELS
 
 from program.utils.function import get_calls
 
@@ -166,7 +166,8 @@ async def bot_kicked(c: Client, m: Message):
             await remove_active_chat(chat_id)
             return
         try:
-            await user.leave_chat(chat_id)
+            if not int(chat_id) in MY_CHANNELS:
+                await user.leave_chat(chat_id)
             await remove_served_chat(chat_id)
         except BaseException as err:
             print(err)
