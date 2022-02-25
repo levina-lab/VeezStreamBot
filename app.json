@@ -62,6 +62,10 @@
         "ALIVE_NAME": {
             "description": "fill with your telegram account nickname/name",
             "required": true
+        },
+        "MY_CHANNELS": {
+            "description": "if you have groups and this bot uses in that groups, then fill ID of group. Separate multiple IDs by space.",
+            "required": false
         }
     },
     "addons": [],
