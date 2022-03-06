@@ -50,7 +50,7 @@ Read the [Docs](https://levina.gitbook.io/videostreambot/deployment/requirements
 
 <h4>Click the button below to deploy Bot on Heroku!</h4>    
 <p><a 
-
+[![Deploy+On+Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Unknownvip/BLAZE-video)
 </details>
 
 <details>
