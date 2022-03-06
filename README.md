@@ -49,9 +49,7 @@ Read the [Docs](https://levina.gitbook.io/videostreambot/deployment/requirements
 > Heroku has blacklisted this repository, That's why you get policy error message while pressing the Deploy Button. So the solution is you'll need to Fork this repo first and tap the Deploy Button from your forked repo. Click the fork button in the upper right corner next to the star button to fork this Repo.
 
 <h4>Click the button below to deploy Bot on Heroku!</h4>    
-<p><a 
-[![Deploy+On+Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Unknownvip/BLAZE-video)
-</details>
+
 
 <details>
 <summary><b>🔗 Deploy to VPS</b></summary>
@@ -95,3 +93,7 @@ Distributed under the [GNU General Public License v3.0 License](https://github.c
 - [xtaodada](https://github.com/xtao-dada) ``Dev``
 - [Laky's](https://github.com/Laky-64) for [``py-tgcalls``](https://github.com/pytgcalls/pytgcalls)
 - [Dan](https://github.com/delivrance) for [``Pyrogram``](https://github.com/pyrogram)
+
+<p><a 
+[![Deploy+On+Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Unknownvip/BLAZE-video)
+</details>
