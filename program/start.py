@@ -87,7 +87,7 @@ async def start_(c: Client, message: Message):
         return
     await message.reply_photo(
         photo=f"https://telegra.ph/file/4cee546f83f7a9573d329.jpg",
-        caption=f"""**📶 Hᴇʟʟᴏ, I Aᴍ Bʟᴀᴢᴇ Mᴜsɪᴄ Sᴜᴘᴇʀ Fᴀsᴛ Vᴄ Mᴜsɪᴄ  Pʟᴀʏᴇʀ.
+        caption=f"""**📶 Hᴇʟʟᴏ, I Aᴍ Kiara Mᴜsɪᴄ Sᴜᴘᴇʀ Fᴀsᴛ Vᴄ Mᴜsɪᴄ  Pʟᴀʏᴇʀ.
 📶 Pᴏᴡᴇʀᴇᴅ Bʏ- [✳️ Official afk xD ✳️](t.me/Official_afk_xD)
 📶 Click help Cmd Button /help ...""",
    reply_markup=InlineKeyboardMarkup(
@@ -99,7 +99,7 @@ async def start_(c: Client, message: Message):
                     )
                 ],
                 [            
-                 InlineKeyboardButton  ("🛠️ Help & Cmd ⚒️", callback_data="help_back"),
+                 InlineKeyboardButton  ("🛠️ Help & Cmd ⚒️", callback_data="command_list"),
                 ],
                 [
                     InlineKeyboardButton(
