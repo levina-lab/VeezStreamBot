@@ -99,7 +99,7 @@ async def start_(c: Client, message: Message):
                     )
                 ],
                 [            
-                 InlineKeyboardButton  ("🛠️ Help & Cmd ⚒️", callback_data="command_list"),
+                 InlineKeyboardButton  ("🛠️ Help & Cmd ⚒️", url=f"t.me/ALL_DEAR_COMRADE"),
                 ],
                 [
                     InlineKeyboardButton(
