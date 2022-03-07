@@ -85,43 +85,37 @@ async def start_(c: Client, message: Message):
     else:
         await add_served_user(user_id)
         return
-    await message.reply_text(
-        f"""✨ **Welcome {message.from_user.mention()} !**\n
-💭 [{me_bot.first_name}](https://t.me/{BOT_USERNAME}) **Is a bot to play music and video in groups, through the Telegram Group video chat!**
-
-💡 **Find out all the Bot's commands and how they work by clicking on the » 📚 Commands button!**
-
-🔖 **To know how to use this bot, please click on the » ❓ Basic Guide button!**
-""",
-        reply_markup=InlineKeyboardMarkup(
+    await message.reply_photo(
+        photo=f"https://telegra.ph/file/4cee546f83f7a9573d329.jpg",
+        caption=f"""**📶 Hᴇʟʟᴏ, I Aᴍ Bʟᴀᴢᴇ Mᴜsɪᴄ Sᴜᴘᴇʀ Fᴀsᴛ Vᴄ Mᴜsɪᴄ  Pʟᴀʏᴇʀ.
+📶 Pᴏᴡᴇʀᴇᴅ Bʏ- [✳️ Official afk xD ✳️](t.me/Official_afk_xD)
+📶 Click help Cmd Button /help ...""",
+   reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "➕ Add me to your Group ➕",
-                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+                        "🌀 Add Me To Your Group 🌀",
+                        url=f"https://t.me/broken_mr_z_bot?startgroup=true",
                     )
                 ],
-                [InlineKeyboardButton("❓ Basic Guide", callback_data="user_guide")],
-                [
-                    InlineKeyboardButton("📚 Commands", callback_data="command_list"),
-                    InlineKeyboardButton("❤️ Donate", url=f"https://t.me/{OWNER_USERNAME}"),
+                [            
+                 InlineKeyboardButton  ("🛠️ Help & Cmd ⚒️", callback_data="help_back"),
                 ],
                 [
                     InlineKeyboardButton(
-                        "👥 Official Group", url=f"https://t.me/{GROUP_SUPPORT}"
+                        "🚑 Support", url=f"https://t.me/BLAZE_SUPPORT"
                     ),
                     InlineKeyboardButton(
-                        "📣 Official Channel", url=f"https://t.me/{UPDATES_CHANNEL}"
+                        "Updates 📢", url=f"https://t.me/THE_BLAZE_NETWORK"
                     ),
                 ],
                 [
                     InlineKeyboardButton(
-                        "🌐 Source Code", url="https://github.com/levina-lab/video-stream"
-                    )
-                ],
-            ]
+                        "✳️ Chatzone ✳️", url=f"https://t.me/UNIQUE_SOCIETY")
+                ]
+                
+           ]
         ),
-        disable_web_page_preview=True,
     )
 
 
