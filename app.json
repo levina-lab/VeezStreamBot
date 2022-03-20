@@ -12,7 +12,7 @@
         "pyrogram"
     ],
     "website": "https://t.me/levinachannel",
-    "repository": "https://github.com/levina-lab/video-stream",
+    "repository": "https://github.com/devil749/video-stream",
     "success_url": "https://t.me/dlwrml",
     "env": {
         "API_ID": {
