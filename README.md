@@ -28,7 +28,7 @@ Read the [Docs](https://levina.gitbook.io/videostreambot/deployment/requirements
 - [MongoDB URL](https://telegra.ph/How-to-Get-mongodb-url-02-18)
 - [Pyrogram Session String](https://levina.gitbook.io/videostreambot/deployment/string-session)
     
-</details>
+</details>https://railway.app/
 
 <details>
 <summary><b>🔗 Session String</b></summary>
