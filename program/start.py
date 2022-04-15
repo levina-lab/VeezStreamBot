@@ -77,7 +77,7 @@ async def _human_time_duration(seconds):
 
 
 @Client.on_message(
-    command(["start", f"start@{BOT_USERNAME}"]) & filters.private & ~filters.edited
+    command(["start", f"start@{ASOmusicbot}"]) & filters.private & ~filters.edited
 )
 @check_blacklist()
 async def start_(c: Client, message: Message):
@@ -87,24 +87,24 @@ async def start_(c: Client, message: Message):
         f"""Hi {message.from_user.mention()} 👋🏻\n
 💭 [{me_bot.first_name}](https://t.me/{me_bot.username}) is a bot to play music and video in groups, through the new Telegram video chats.
 
-🕵🏻 Check out all the **Bot's commands** and how they work by clicking on the » 📚 **Commands** button!
+🕵🏻 Check out all the **Bot's commands** and how they work by clicking on the » 📚 **Menyu** button!
 
-🧑🏻‍💻 To know how to use this bot, please click on the » ❓ **Basic Guide** button!
+🧑🏻‍💻 To know how to use this bot, please click on the » ❓ **Asisstant** button!
 """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("➕ Add me to a Group ➕", url=f"https://t.me/{me_bot.username}?startgroup=true")
+                    InlineKeyboardButton("➕ Beni Grupa Ekle ➕", url=f"https://t.me/{ASOmusicbot}?startgroup=true")
                 ],[
-                    InlineKeyboardButton("❓ Basic Guide", callback_data="user_guide")
+                    InlineKeyboardButton("❓ Asisstant", callback_data="user_guide")
                 ],[
-                    InlineKeyboardButton("📚 Commands", callback_data="command_list"),
-                    InlineKeyboardButton("❤️ Donate", url=f"https://t.me/{OWNER_USERNAME}")
+                    InlineKeyboardButton("📚 Menyu", callback_data="command_list"),
+                    InlineKeyboardButton("❤️ Reklam", url=f"https://t.me/{ismiyev95}")
                 ],[
-                    InlineKeyboardButton("👥 Support Group", url=f"https://t.me/{GROUP_SUPPORT}"),
-                    InlineKeyboardButton("📣 Support Channel", url=f"https://t.me/{UPDATES_CHANNEL}")
+                    InlineKeyboardButton("👥 𓆩𓄂𝙰𝚂𝙾🇦🇿𝐒ö𝐡𝐛𝐞𝐭 𝐐𝐫𝐮𝐩𝐮𝐦𝐮𝐳", url=f"https://t.me/{WerabliAnlar}"),
+                    InlineKeyboardButton("📣 𓆩𓄂𝙰𝚂𝙾🇦🇿𝐔𝐬𝐞𝐫 𝐁𝐨𝐭", url=f"https://t.me/{WerabSupport}")
                 ],[
-                    InlineKeyboardButton("🌐 Source Code", url="https://github.com/levina-lab/video-stream")
+                    InlineKeyboardButton("🌐 Sahibim", url="https://t.me/ismiyev95")
                 ],
             ]
         ),
@@ -113,7 +113,7 @@ async def start_(c: Client, message: Message):
 
 
 @Client.on_message(
-    command(["alive", f"alive@{BOT_USERNAME}"]) & filters.group & ~filters.edited
+    command(["alive", f"alive@{ASOmusicbot}"]) & filters.group & ~filters.edited
 )
 @check_blacklist()
 async def alive(c: Client, message: Message):
@@ -124,14 +124,14 @@ async def alive(c: Client, message: Message):
     buttons = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("✨ Group", url=f"https://t.me/{GROUP_SUPPORT}"),
+                InlineKeyboardButton("✨ 𓆩𓄂𝙰𝚂𝙾🇦🇿𝐒ö𝐡𝐛𝐞𝐭 𝐐𝐫𝐮𝐩𝐮𝐦𝐮𝐳", url=f"https://t.me/{GROUP_SUPPORT}"),
                 InlineKeyboardButton(
-                    "📣 Channel", url=f"https://t.me/{UPDATES_CHANNEL}"
+                    "📣 𓆩𓄂𝙰𝚂𝙾🇦🇿𝐔𝐬𝐞𝐫 𝐁𝐨𝐭", url=f"https://t.me/{UPDATES_CHANNEL}"
                 ),
             ]
         ]
     )
-    text = f"**Hello {message.from_user.mention()}, I'm {me_bot.first_name}**\n\n🧑🏼‍💻 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_USERNAME})\n👾 Bot Version: `v{__version__}`\n🔥 Pyrogram Version: `{pyrover}`\n🐍 Python Version: `{__python_version__}`\n✨ PyTgCalls Version: `{pytover.__version__}`\n🆙 Uptime Status: `{uptime}`\n\n❤ **Thanks for Adding me here, for playing video & music on your Group's video chat**"
+    text = f"**Hello {message.from_user.mention()}, I'm {me_bot.first_name}**\n\n🧑🏼‍💻 My Master: [{𓆩𓄂𝙰𝚂𝙾🇦🇿❉͜͡᭙Ҩ➣ࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩࠩ𝕋𝕚𝔾𝕣}](https://t.me/{ismiyev95})\n👾 Bot Version: `v{__version__}`\n🔥 Pyrogram Version: `{pyrover}`\n🐍 Python Version: `{__python_version__}`\n✨ PyTgCalls Version: `{pytover.__version__}`\n🆙 Uptime Status: `{uptime}`\n\n❤ **Thanks for Adding me here, for playing video & music on your Group's video chat**"
     await c.send_photo(
         chat_id,
         photo=f"{ALIVE_IMG}",
@@ -140,7 +140,7 @@ async def alive(c: Client, message: Message):
     )
 
 
-@Client.on_message(command(["ping", f"ping@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["ping", f"ping@{ASOmusicbot}"]) & ~filters.edited)
 @check_blacklist()
 async def ping_pong(c: Client, message: Message):
     start = time()
@@ -149,7 +149,7 @@ async def ping_pong(c: Client, message: Message):
     await m_reply.edit_text("🏓 PONG !\n" f"⏱ `{delta_ping * 1000:.3f} ms`")
 
 
-@Client.on_message(command(["uptime", f"uptime@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["uptime", f"uptime@{ASOmusicbot}"]) & ~filters.edited)
 @check_blacklist()
 async def get_uptime(c: Client, message: Message):
     current_time = datetime.utcnow()
@@ -195,10 +195,10 @@ async def new_chat(c: Client, m: Message):
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("📣 Channel", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                                InlineKeyboardButton("💭 Support", url=f"https://t.me/{GROUP_SUPPORT}")
+                                InlineKeyboardButton("📣 𓆩𓄂𝙰𝚂𝙾🇦🇿𝐔𝐬𝐞𝐫 𝐁𝐨𝐭", url=f"https://t.me/{WerabSupport}"),
+                                InlineKeyboardButton("💭 𓆩𓄂𝙰𝚂𝙾🇦🇿𝐒ö𝐡𝐛𝐞𝐭 𝐐𝐫𝐮𝐩𝐮𝐦𝐮𝐳", url=f"https://t.me/{WerabliAnlar}")
                             ],[
-                                InlineKeyboardButton("👤 Assistant", url=f"https://t.me/{me_user.username}")
+                                InlineKeyboardButton("👤 Assistant", url=f"https://t.me/{ASOmusich_asisstant}")
                             ]
                         ]
                     )
