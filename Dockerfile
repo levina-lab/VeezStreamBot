@@ -4,6 +4,8 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends ffmpeg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+    
+RUN apt install python3-pip
 
 COPY . /app/
 WORKDIR /app/
