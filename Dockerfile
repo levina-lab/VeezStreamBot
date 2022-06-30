@@ -5,7 +5,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
     
-RUN apt install python3-pip
+RUN apt-get install python3-pip
 
 COPY . /app/
 WORKDIR /app/
